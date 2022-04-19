@@ -12,7 +12,8 @@ public class PlayerTankController : TankController<PlayerTankController>
     private Rigidbody rb;             // Rigidbody reference
     private float horizontalMov;     // for storing Horizontal movement inputs
     private float verticalMov;      // for storing vertical movement inputs
-
+    [SerializeField] private Joystick horizontalJoystick;   // For rotating a tank
+    [SerializeField] private Joystick verticalJoystick;    // For moving tank forward & backward
     protected override void Awake()
     {
         base.Awake();
@@ -25,8 +26,8 @@ public class PlayerTankController : TankController<PlayerTankController>
 
     private void Update()
     {
-        horizontalMov = Input.GetAxis("Horizontal1");
-        verticalMov = Input.GetAxis("Vertical1");
+        horizontalMov = horizontalJoystick.Horizontal;
+        verticalMov = verticalJoystick.Vertical;
         EngineAudio();
     }
 
