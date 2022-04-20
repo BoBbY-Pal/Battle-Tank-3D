@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-public class TankController<T> : MonoBehaviour where T : TankController<T>  //Generic Singleton
+public class MonoSingletonGeneric<T> : MonoBehaviour where T : MonoSingletonGeneric<T>  //Generic Singleton
 {
     private static T instance;
     public static T Instance

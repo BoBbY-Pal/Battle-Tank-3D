@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-public class PlayerTankController : TankController<PlayerTankController>  
+public class PlayerTankController : MonoSingletonGeneric<PlayerTankController>  
 {
     public float speed = 10f;           // Movement speed
     public float turnSpeed = 150f;     // Turning speed
-    public AudioClip engineIdling;
-    public AudioClip engineDriving;
+    public AudioClip engineIdling, engineDriving;
     public AudioSource movementAudio;
     public float pitchRange = 0.2f;
     
@@ -33,7 +32,7 @@ public class PlayerTankController : TankController<PlayerTankController>
 
     private void EngineAudio()
     {
-        // If there is no input(Tank Idle State)
+        // If there is no input (Tank Idle State)
         if(Mathf.Abs(verticalMov) < 0.1f && Mathf.Abs(horizontalMov) < 0.1f) 
         {
             // And if Driving audio is playing
@@ -65,6 +64,7 @@ public class PlayerTankController : TankController<PlayerTankController>
     {
         // rb.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
         Vector3 movement = transform.forward * (verticalMov * speed * Time.deltaTime);
+        // Applying movement on rigidbody
         rb.MovePosition(rb.position + movement);
     }
 
