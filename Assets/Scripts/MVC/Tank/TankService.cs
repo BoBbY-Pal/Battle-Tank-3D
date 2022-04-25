@@ -12,10 +12,9 @@ namespace MVC.Tank
 
         private TankController CreateNewTank()
         {
-            TankModel model = new TankModel(10, 100f);
+            PlayerTankModel model = new PlayerTankModel(10, 100f);
             TankController tank = new TankController(model, tankView);
-            return tank; 
-            
+            return tank;             
         }
 
     }

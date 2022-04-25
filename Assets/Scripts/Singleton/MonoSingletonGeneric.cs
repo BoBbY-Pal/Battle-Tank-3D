@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+
 public class MonoSingletonGeneric<T> : MonoBehaviour where T : MonoSingletonGeneric<T>  //Generic Singleton
 {
     private static T instance;
@@ -21,13 +21,4 @@ public class MonoSingletonGeneric<T> : MonoBehaviour where T : MonoSingletonGene
             Destroy(gameObject);
         }
     }
-}
-
-public class EnemyTankController : MonoBehaviour
-{
-    // private void Start()
-    // {
-    //     PlayerTankController.Instance.MovePlayer();
-    //     
-    // }
 }
