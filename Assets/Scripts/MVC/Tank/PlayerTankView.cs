@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -28,13 +26,17 @@ using UnityEngine.UI;
          tankController.SetHealthUI();
      }
 
+     public void SetTankControllerReference(PlayerTankController controller)
+     {
+         tankController = controller;
+     }
      public void Death()
      {
          Destroy(gameObject);
      }
 
-     public void TakeDamage()
+     public void TakeDamage(int damage)
      {
-         tankController.TakeDamage();
+         tankController.TakeDamage(damage);
      }
  }

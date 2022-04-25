@@ -10,12 +10,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock://D:/Game Dev/Unity 3D/Battle-Tank-3D/Assets/Scripts/MVC/Tank/TankController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Game Dev/Unity 3D/Battle-Tank-3D/Assets/Scripts/MVC/Tank/TankController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Game Dev/Unity 3D/Battle-Tank-3D/Assets/Scripts/MVC/Tank/TankController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Game Dev/Unity 3D/Battle-Tank-3D/Assets/Scripts/MVC/Tank/TankController.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -80,7 +74,9 @@
       <workItem from="1650435838172" duration="9269000" />
       <workItem from="1650643309517" duration="6845000" />
       <workItem from="1650778407203" duration="4512000" />
-      <workItem from="1650816742841" duration="4702000" />
+      <workItem from="1650816742841" duration="24005000" />
+      <workItem from="1650909388316" duration="334000" />
+      <workItem from="1650909739659" duration="1000" />
     </task>
     <servers />
   </component>
