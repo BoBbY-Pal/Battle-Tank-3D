@@ -124,6 +124,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &65791263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 65791264}
+  - component: {fileID: 65791265}
+  m_Layer: 0
+  m_Name: Player Tank Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &65791264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65791263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2051028434}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &65791265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65791263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372ace66338b2224ca823b2d75d2158f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankView: {fileID: 250639289, guid: 0a0759bc2eaf94a4dab718ec74481378, type: 3}
+  playerTankList: {fileID: 11400000, guid: 08447dafaf665124ea660445a4410d27, type: 2}
+  rightJoystick: {fileID: 582834376}
+  leftJoystick: {fileID: 797909607}
+  camera: {fileID: 1391056263}
 --- !u!1 &245311659
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,24 +273,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &250639282 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 26768033650643016, guid: 0a0759bc2eaf94a4dab718ec74481378,
-    type: 3}
-  m_PrefabInstance: {fileID: 26768035137600187}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &250639289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250639282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c2489fcd0456814395a4fd93a77fc63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &391967484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -705,6 +735,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!1 &1321035433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1321035434}
+  m_Layer: 0
+  m_Name: 'Enemy Tank Manager '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1321035434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321035433}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2051028434}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391056259
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,27 +1042,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2051028434}
-  - component: {fileID: 2051028433}
   m_Layer: 0
-  m_Name: TankService
+  m_Name: ServiceManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2051028433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051028432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 372ace66338b2224ca823b2d75d2158f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankView: {fileID: 250639289}
 --- !u!4 &2051028434
 Transform:
   m_ObjectHideFlags: 0
@@ -1013,7 +1059,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 65791264}
+  - {fileID: 1321035434}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1024,18 +1072,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1864077319, guid: 0a0759bc2eaf94a4dab718ec74481378, type: 3}
-      propertyPath: joystick
-      value: 
-      objectReference: {fileID: 797909607}
-    - target: {fileID: 1864077319, guid: 0a0759bc2eaf94a4dab718ec74481378, type: 3}
-      propertyPath: verticalJoystick
-      value: 
-      objectReference: {fileID: 797909607}
-    - target: {fileID: 1864077319, guid: 0a0759bc2eaf94a4dab718ec74481378, type: 3}
-      propertyPath: horizontalJoystick
-      value: 
-      objectReference: {fileID: 582834376}
     - target: {fileID: 26768033650478504, guid: 0a0759bc2eaf94a4dab718ec74481378,
         type: 3}
       propertyPath: m_RootOrder
@@ -1095,6 +1131,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 26768033650643016, guid: 0a0759bc2eaf94a4dab718ec74481378,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0759bc2eaf94a4dab718ec74481378, type: 3}
