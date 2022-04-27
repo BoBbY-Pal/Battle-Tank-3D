@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class TankController<T> : MonoBehaviour where T : TankController<T>  //Generic Singleton
 {
@@ -25,23 +23,11 @@ public class TankController<T> : MonoBehaviour where T : TankController<T>  //Ge
     }
 }
 
-public class PlayerTankController : TankController<PlayerTankController>
-{
-    protected override void Awake()
-    {
-        base.Awake();
-        //Custom Awake
-    }
-
-    public void MovePlayer()
-    {
-        
-    }
-}
 public class EnemyTankController : MonoBehaviour
 {
-    private void Start()
-    {
-        PlayerTankController.Instance.MovePlayer();
-    }
+    // private void Start()
+    // {
+    //     PlayerTankController.Instance.MovePlayer();
+    //     
+    // }
 }
