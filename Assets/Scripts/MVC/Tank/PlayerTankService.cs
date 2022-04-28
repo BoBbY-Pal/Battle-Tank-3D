@@ -11,12 +11,13 @@ public class PlayerTankService : MonoSingletonGeneric<PlayerTankService>
     private void Start()
     {
         _playerTankType = TankType.Green;
-        _tankController = CreatePlayerTank(_playerTankType);
-        
+        // _tankController = CreatePlayerTank(_playerTankType);
+        CreateRandomTank();
     }
 
     private PlayerTankController CreatePlayerTank(TankType tankType)
     {
+       
         // foreach (TankScriptableObject tank in playerTankList.tanks)
         foreach (var t in playerTankList.tanks)
         {
@@ -31,5 +32,14 @@ public class PlayerTankService : MonoSingletonGeneric<PlayerTankService>
         }
 
         return null;
+    }
+
+    private void CreateRandomTank()
+    {
+        TankScriptableObject t = playerTankList.tanks[Random.Range(0, playerTankList.tanks.Length)];
+        PlayerTankModel tankModel = new PlayerTankModel(t.movementSpeed,
+            t.health, t.rotationRate,
+            t.turretRotationRate);
+        PlayerTankController tankController = new PlayerTankController(tankModel, tankView);
     }
 }

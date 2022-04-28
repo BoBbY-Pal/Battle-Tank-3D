@@ -16,6 +16,6 @@ MonoBehaviour:
   tankControllerType: 0
   bulletType: 0
   health: 120
-  movementSpeed: 11
+  movementSpeed: 15
   rotationRate: 150
   turretRotationRate: 70
