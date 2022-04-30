@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankType: 1
   tankControllerType: 0
-  bulletType: 2
   health: 90
   movementSpeed: 5
-  rotationRate: 140
-  turretRotationRate: 60
+  rotationRate: 110
+  turretRotationRate: 80
+  bulletType: 2

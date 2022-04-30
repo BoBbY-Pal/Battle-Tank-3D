@@ -37,8 +37,8 @@ using UnityEngine.UI;
      {
          cam = Camera.main;
          Joystick[] joys = FindObjectsOfType<Joystick>();
-         rightJoystick = joys[0];
-         leftJoystick = joys[1];
+         rightJoystick = joys[1];
+         leftJoystick = joys[0];
      }
 
      private void Update()
@@ -54,7 +54,7 @@ using UnityEngine.UI;
          }
      }
 
-     private void FixedUpdateTankController()     //calling this func in fixed update from Tank Service
+     private void FixedUpdateTankController()     //calling this func in fixed update 
      {
          if (tank_rb)
          {
@@ -67,7 +67,7 @@ using UnityEngine.UI;
              {
                  tankController.TurnPlayerTank();
              }
-             // EngineAudio();    
+                
          }
 
          if (turret)

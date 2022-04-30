@@ -888,6 +888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1321035434}
+  - component: {fileID: 1321035435}
   m_Layer: 0
   m_Name: 'Enemy Tank Manager '
   m_TagString: Untagged
@@ -909,6 +910,22 @@ Transform:
   m_Father: {fileID: 2051028434}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1321035435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321035433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca4b1613ef044388b39ef50daa39ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankView: {fileID: 8123107663597325549, guid: 8207c9ce4b447514e958b11f2f08c294,
+    type: 3}
+  enemyTankList: {fileID: 11400000, guid: 3004ef707f600b140a174c4a165627d7, type: 2}
+  bulletList: {fileID: 11400000, guid: 2193ddb257de4854bbd9466c5fdb4671, type: 2}
 --- !u!1 &1391056259
 GameObject:
   m_ObjectHideFlags: 0

@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 26768034755241215}
   - component: {fileID: 26768034755241214}
   - component: {fileID: 3978220300882814298}
+  - component: {fileID: 8123107663597325549}
   m_Layer: 6
   m_Name: DefaultEnemyTank
   m_TagString: Untagged
@@ -189,7 +190,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26768033650643016}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4932ab25b84dd7649b80af68a9660ddc, type: 3}
@@ -374,6 +375,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8123107663597325549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26768033650643016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef50b52b7a7542dd891a69b15991de38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &26768033650643018
 GameObject:
   m_ObjectHideFlags: 0

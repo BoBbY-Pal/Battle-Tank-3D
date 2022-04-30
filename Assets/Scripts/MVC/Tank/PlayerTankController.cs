@@ -3,18 +3,6 @@ public class PlayerTankController
 {
     private PlayerTankModel tankModel { get; }
     private PlayerTankView tankView { get; }
-    
-    
-    
-    public float pitchRange = 0.2f;
-    
-    
-    
-   
-    // private Joystick _leftJoystick;   // For rotating a tank
-    // private Joystick _rightJoystick;    // For moving tank forward & backward
-    // private Camera _camera;
-    //
 
     public PlayerTankController(PlayerTankModel tankModel, PlayerTankView tankPrefab)
     {
@@ -36,7 +24,7 @@ public class PlayerTankController
             if(tankView.movementAudio.clip == tankView.engineDriving) 
             {   // Change the clip to Idle and play it
                 tankView.movementAudio.clip = tankView.engineIdling;
-                tankView.movementAudio.pitch = Random.Range(tankView.originalPitch - pitchRange, tankView.originalPitch + pitchRange);
+                tankView.movementAudio.pitch = Random.Range(tankView.originalPitch - tankModel.pitchRange, tankView.originalPitch + tankModel.pitchRange);
                 tankView.movementAudio.Play();
             }
         }
@@ -46,7 +34,7 @@ public class PlayerTankController
             if(tankView.movementAudio.clip == tankView.engineIdling)
             {
                 tankView.movementAudio.clip = tankView.engineDriving;
-                tankView.movementAudio.pitch = Random.Range(tankView.originalPitch - pitchRange, tankView.originalPitch + pitchRange);
+                tankView.movementAudio.pitch = Random.Range(tankView.originalPitch - tankModel.pitchRange, tankView.originalPitch + tankModel.pitchRange);
                 tankView.movementAudio.Play();
             }
         }
@@ -80,9 +68,9 @@ public class PlayerTankController
 
     public void TakeDamage(int damage)
     {
-        tankModel.health -= damage;
+        tankModel.currentHealth -= damage;
         SetHealthUI();  // Update the health bar
-        if (tankModel.health - damage <= 0 && !tankModel.isDead)
+        if (tankModel.currentHealth - damage <= 0 && !tankModel.isDead)
         {
             Death();
         }
@@ -90,6 +78,7 @@ public class PlayerTankController
 
     private void Death()
     {
+        // Playing the effects on the death of the tank and destroying it.
         tankModel.isDead = true;
         tankView.explosionParticles.transform.position = tankView.transform.position;
         tankView.explosionParticles.gameObject.SetActive((true));
@@ -99,9 +88,10 @@ public class PlayerTankController
     }
 
     private void SetHealthUI()
-    {
-        tankView.healthSlider.value = tankModel.health;
+    {   
+        // Set the value and color of the health slider.
+        tankView.healthSlider.value = tankModel.currentHealth;
         tankView.fillImage.color = Color.Lerp(tankModel.zeroHealthColor, tankModel.fullHealthColor,
-            tankModel.health / tankModel.maxHealth);
+            tankModel.currentHealth / tankModel.maxHealth);
     }
 }
