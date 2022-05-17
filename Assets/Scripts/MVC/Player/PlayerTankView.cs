@@ -19,7 +19,7 @@ using UnityEngine.UI;
      [HideInInspector] public ParticleSystem explosionParticles;
      [HideInInspector] public Rigidbody tank_rb;             // Rigidbody reference
 
-     private PlayerTankController tankController;
+     private PlayerTankController _tankController;
      
      private void Awake()
      {
@@ -43,12 +43,12 @@ using UnityEngine.UI;
 
      private void Update()
      {
-         tankController.EngineAudio();
+         _tankController.EngineAudio();
      }
 
      private void FixedUpdate()
      {
-         if (tankController != null)
+         if (_tankController != null)
          {
              FixedUpdateTankController();
          }
@@ -60,12 +60,12 @@ using UnityEngine.UI;
          {
              if (leftJoystick.Vertical != 0)
              {
-                 tankController.MovePlayerTank();
+                 _tankController.MovePlayerTank();
              }
 
              if (leftJoystick.Horizontal != 0)
              {
-                 tankController.TurnPlayerTank();
+                 _tankController.TurnPlayerTank();
              }
                 
          }
@@ -74,13 +74,13 @@ using UnityEngine.UI;
          {
              if (rightJoystick.Horizontal != 0)
              {
-                 tankController.RotatePlayerTankTurret();
+                 _tankController.RotatePlayerTankTurret();
              }
          }
      }
      public void SetTankControllerReference(PlayerTankController controller)
      {
-         tankController = controller;
+         _tankController = controller;
      }
      public void Death()
      {
@@ -89,6 +89,6 @@ using UnityEngine.UI;
 
      public void TakeDamage(int damage)
      {
-         tankController.TakeDamage(damage);
+         _tankController.TakeDamage(damage);
      }
  }

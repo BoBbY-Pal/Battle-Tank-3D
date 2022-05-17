@@ -66,7 +66,7 @@ public class PlayerTankController
         tankView.turret.transform.Rotate(desiredRotation, Space.Self);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         tankModel.currentHealth -= damage;
         SetHealthUI();  // Update the health bar
