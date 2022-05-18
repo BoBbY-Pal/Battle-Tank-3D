@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12db5d594cf64702b5e542302595de31, type: 3}
-  m_Name: BulletList
+  m_Script: {fileID: 11500000, guid: 83b0da87eb8a405693ec451eaa4917b3, type: 3}
+  m_Name: Med Damage
   m_EditorClassIdentifier: 
-  bulletTypeList: []
+  bulletPrefab: {fileID: 7947392365596030608, guid: b894b97fbbf5e0842bcb28d74cc5067a,
+    type: 3}
+  bulletType: 1
+  damage: 90
+  explosionRadius: 5
+  explosionForce: 100
+  maxLifeTime: 2

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b0da87eb8a405693ec451eaa4917b3, type: 3}
+  m_Name: Low Damage
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7947392365596030608, guid: b894b97fbbf5e0842bcb28d74cc5067a,
+    type: 3}
+  bulletType: 0
+  damage: 80
+  explosionRadius: 6
+  explosionForce: 1000
+  maxLifeTime: 3
