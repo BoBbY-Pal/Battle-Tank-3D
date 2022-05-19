@@ -8,13 +8,11 @@ public class PlayerTankController
     {
         this.tankModel = tankModel;
         tankView = Object.Instantiate(tankPrefab);
-        SetHealthUI();
-        tankView.SetTankControllerReference(this);
+        SetHealthSlider();
+        tankView.SetTankController(this);
         Debug.Log("Tank Created", tankView);
     }
-
-
-
+    
     public void EngineAudio()
     {
         // If there is no input (Tank Idle State)
@@ -69,29 +67,24 @@ public class PlayerTankController
     public void TakeDamage(float damage)
     {
         tankModel.currentHealth -= damage;
-        SetHealthUI();  // Update the health bar
+        SetHealthSlider();  // Update the health bar
         if (tankModel.currentHealth - damage <= 0 && !tankModel.isDead)
-        {
-            Death();
+        {   
+            tankModel.isDead = true;
+            tankView.PlayerDied();
         }
     }
 
-    private void Death()
-    {
-        // Playing the effects on the death of the tank and destroying it.
-        tankModel.isDead = true;
-        tankView.explosionParticles.transform.position = tankView.transform.position;
-        tankView.explosionParticles.gameObject.SetActive((true));
-        tankView.explosionParticles.Play();
-        tankView.explosionSound.Play();
-        tankView.Death();   //  Destroy the object
-    }
-
-    private void SetHealthUI()
+    public void SetHealthSlider()
     {   
         // Set the value and color of the health slider.
         tankView.healthSlider.value = tankModel.currentHealth;
         tankView.fillImage.color = Color.Lerp(tankModel.zeroHealthColor, tankModel.fullHealthColor,
             tankModel.currentHealth / tankModel.maxHealth);
+    }
+
+    public void SetAimSlider()
+    {
+        tankView.aimSlider.value = tankModel.currentLaunchForce;
     }
 }

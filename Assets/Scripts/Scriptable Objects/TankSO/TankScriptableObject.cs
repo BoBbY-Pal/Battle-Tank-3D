@@ -18,6 +18,9 @@ public class TankScriptableObject : ScriptableObject
     
     [Header("Shooting Parameters")]
     public BulletType bulletType;
+    public float minLaunchForce;
+    public float maxLaunchForce;
+    public float maxChargeTime;
 }
 
 

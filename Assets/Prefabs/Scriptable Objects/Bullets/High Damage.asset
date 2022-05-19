@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b0da87eb8a405693ec451eaa4917b3, type: 3}
   m_Name: High Damage
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7947392365596030608, guid: b894b97fbbf5e0842bcb28d74cc5067a,
+  bulletView: {fileID: 7947392365596030608, guid: b894b97fbbf5e0842bcb28d74cc5067a,
     type: 3}
   bulletType: 2
   damage: 100

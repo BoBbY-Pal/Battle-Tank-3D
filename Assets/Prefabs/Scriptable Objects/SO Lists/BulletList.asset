@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BulletList
   m_EditorClassIdentifier: 
   bulletTypeList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 23c416786ecc3c14fa7789e4acf43cd5, type: 2}
+  - {fileID: 11400000, guid: 041e0ee2d86aeba409d1aae179aca7d7, type: 2}
+  - {fileID: 11400000, guid: 73dfaa95779861e4ba6ece4acb86d0d1, type: 2}

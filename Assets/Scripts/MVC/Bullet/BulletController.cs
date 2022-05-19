@@ -1,8 +1,7 @@
 ﻿using Interfaces;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
-public class BulletController
+public class BulletController 
 {
     public BulletModel bulletModel { get; }
     private BulletView bulletView { get;  }
@@ -12,7 +11,7 @@ public class BulletController
     {
         this.bulletModel = bulletModel;
         bulletView = Object.Instantiate(bulletPrefab, fireTransform.position, fireTransform.rotation);
-        bulletView.SetTankControllerReference(this);
+        bulletView.SetBulletController(this);
         bulletView.GetComponent<Rigidbody>().velocity = fireTransform.forward * launchForce;
     }
     
@@ -52,7 +51,7 @@ public class BulletController
     {
         
         float explosionDistance = (targetPos - bulletView.transform.position).magnitude;
-        float relativeDistance = (explosionDistance - bulletModel.explosionRadius) / bulletModel.explosionRadius;
+        float relativeDistance = (bulletModel.explosionRadius - explosionDistance) / bulletModel.explosionRadius;
         float damage = relativeDistance * bulletModel.maxDamage;
 
         damage = Mathf.Max(0f, damage);

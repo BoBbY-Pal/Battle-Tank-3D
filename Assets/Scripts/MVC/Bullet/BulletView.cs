@@ -11,13 +11,11 @@ public class BulletView : MonoBehaviour
     
     private void Start()
     {
-        Destroy(gameObject,_bulletController.bulletModel.maxLifeTime);
+        Destroy(gameObject, _bulletController.bulletModel.maxLifeTime);
     }
     
-    public void SetTankControllerReference(BulletController controller)
-    {
-        _bulletController = controller;
-    }
+    public void SetBulletController(BulletController controller) => _bulletController = controller;
+  
 
     private void OnTriggerEnter(Collider other)
     {

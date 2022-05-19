@@ -527,7 +527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436668, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 436668, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -749,7 +749,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1304999364
 GameObject:
@@ -795,7 +795,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 8ce5d020a687c314891341b4126d1de2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1064,6 +1064,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1924570524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1924570525}
+  - component: {fileID: 1924570526}
+  m_Layer: 0
+  m_Name: Bullet Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1924570525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924570524}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2051028434}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1924570526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924570524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03be5708e79c481e909eafb20395d496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletList: {fileID: 11400000, guid: 2193ddb257de4854bbd9466c5fdb4671, type: 2}
 --- !u!1001 &1972238393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1204,7 +1248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2051028434}
   m_Layer: 0
-  m_Name: ServiceManager
+  m_Name: ServiceManagers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1223,8 +1267,9 @@ Transform:
   m_Children:
   - {fileID: 65791264}
   - {fileID: 1321035434}
+  - {fileID: 1924570525}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7947392365451059083
 PrefabInstance:
@@ -1236,7 +1281,7 @@ PrefabInstance:
     - target: {fileID: 7947392364303316424, guid: b894b97fbbf5e0842bcb28d74cc5067a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7947392364303316424, guid: b894b97fbbf5e0842bcb28d74cc5067a,
         type: 3}
@@ -1291,7 +1336,7 @@ PrefabInstance:
     - target: {fileID: 7947392364303411688, guid: b894b97fbbf5e0842bcb28d74cc5067a,
         type: 3}
       propertyPath: m_Name
-      value: Shell
+      value: Bullet Shell
       objectReference: {fileID: 0}
     - target: {fileID: 7947392365596030622, guid: b894b97fbbf5e0842bcb28d74cc5067a,
         type: 3}

@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 public class BulletSO : ScriptableObject
 {
      [Header("Prefab")] 
-     public BulletView bulletPrefab;
+     public BulletView bulletView;
      
      [Header("Bullet Type")]
      public BulletType bulletType;

@@ -6,20 +6,27 @@ using UnityEngine.UI;
  {
      public GameObject turret;
      public GameObject explosionEffectPrefab;
+     
+     // Aim UI
+     public Slider aimSlider;
+     public Transform fireTransform;
+     
+     // Health UI
      public Slider healthSlider;
      public Image fillImage;
+     
      public AudioClip engineIdling, engineDriving;
      public AudioSource movementAudio;
-     public Joystick rightJoystick, leftJoystick;
-     public Camera cam;
-     
+
      [HideInInspector] public float originalPitch = 0.2f;
      [HideInInspector] public AudioSource explosionSound;
      [HideInInspector] public ParticleSystem explosionParticles;
      [HideInInspector] public Rigidbody tank_rb;             // Rigidbody reference
+     [HideInInspector] public Joystick rightJoystick, leftJoystick;
 
      private PlayerTankController _tankController;
      
+
      private void Awake()
      {
          // Store the original pitch of the audio source
@@ -34,7 +41,6 @@ using UnityEngine.UI;
 
      private void Start()
      {
-         cam = Camera.main;
          Joystick[] joys = FindObjectsOfType<Joystick>();
          rightJoystick = joys[1];
          leftJoystick = joys[0];
@@ -49,11 +55,11 @@ using UnityEngine.UI;
      {
          if (_tankController != null)
          {
-             FixedUpdateTankController();
+             MovementController();
          }
      }
-
-     private void FixedUpdateTankController()     //calling this func in fixed update 
+     
+     private void MovementController()     //calling this func in fixed update 
      {
          if (tank_rb)
          {
@@ -77,12 +83,17 @@ using UnityEngine.UI;
              }
          }
      }
-     public void SetTankControllerReference(PlayerTankController controller)
+     public void SetTankController(PlayerTankController controller) => _tankController = controller;
+  
+     public void PlayerDied()
      {
-         _tankController = controller;
-     }
-     public void Death()
-     {
+         // Playing the effects on the death of the tank and destroying it.
+         explosionParticles.transform.position = transform.position;
+         explosionParticles.gameObject.SetActive((true));
+         explosionParticles.Play();
+         explosionSound.Play(); 
+         
+         //  Destroy the object
          Destroy(gameObject);
      }
 
