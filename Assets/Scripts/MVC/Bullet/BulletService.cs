@@ -4,7 +4,7 @@ public class BulletService : MonoSingletonGeneric<BulletService>
 {
     public BulletSOList bulletList;
 
-    public void FireBullet(BulletType bulletType, Transform bulletTransform, float launchForce)
+    public void SetBulletProperties(BulletType bulletType, Transform bulletTransform, float launchForce)
     {
         CreateBullet(bulletType, bulletTransform, launchForce);
     }

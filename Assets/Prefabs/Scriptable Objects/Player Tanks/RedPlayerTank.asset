@@ -19,3 +19,6 @@ MonoBehaviour:
   rotationRate: 110
   turretRotationRate: 80
   bulletType: 2
+  minLaunchForce: 10
+  maxLaunchForce: 30
+  maxChargeTime: 0.75

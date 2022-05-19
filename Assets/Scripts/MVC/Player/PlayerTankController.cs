@@ -76,6 +76,11 @@ public class PlayerTankController
         }
     }
 
+    public void SetDeathTrue()
+    {
+        tankModel.isDead = true;
+    }
+    
     public void SetHealthSlider()
     {   
         // Set the value and color of the health slider.
@@ -93,36 +98,47 @@ public class PlayerTankController
     {
         tankView.aimSlider.value = tankModel.minLaunchForce;
         
+        // If the max force has been exceeded and the shell hasn't yet been launched...
         if (tankModel.currentLaunchForce >= tankModel.maxLaunchForce && !tankModel.isFired)
-        {
+        {   
+            // ... use the max force and launch the bullet shell.
             tankModel.currentLaunchForce = tankModel.maxLaunchForce;
             Fire();
         }
+        // Otherwise, if the fire button has just started being pressed...
         else if (Input.GetMouseButtonDown(0))   // If pressed fire button for the first time
         {
+            // ... reset the fired flag and reset the launch force.
             tankModel.isFired = false;
             tankModel.currentLaunchForce = tankModel.minLaunchForce;
+            
+            // ... Change the clip to the charging clip and start it playing.
             tankView.shootingAudioSource.clip = tankView.chargingClip;
             tankView.shootingAudioSource.Play();
         }
-        else if (Input.GetMouseButton(0) && !tankModel.isFired)     // If holding fire button
+        // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
+        else if (Input.GetMouseButton(0) && !tankModel.isFired)     
         {
+            // ... Increment the launch force and update the slider.
             tankModel.currentLaunchForce += tankModel.chargeSpeed * Time.deltaTime;
             tankView.aimSlider.value = tankModel.currentLaunchForce;
         }
+        // Otherwise, if the fire button is released and the shell hasn't been launched yet...
         else if (Input.GetMouseButtonUp(0) && !tankModel.isFired)
-        {
-            Fire();
+        {   
+            // ... Launch the shell
+            Fire();     
         }
     }
 
     private void Fire()
     {
         tankModel.isFired = true;
-        BulletService.Instance.FireBullet(tankModel.bulletType, tankView.fireTransform, tankModel.currentLaunchForce);
+        BulletService.Instance.SetBulletProperties(tankModel.bulletType, tankView.fireTransform, tankModel.currentLaunchForce);
         tankView.shootingAudioSource.clip = tankView.firingClip;
         tankView.shootingAudioSource.Play();
 
         tankModel.currentLaunchForce = tankModel.minLaunchForce;
     }
+
 }

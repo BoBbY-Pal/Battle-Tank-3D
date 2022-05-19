@@ -33,7 +33,6 @@ using UnityEngine.UI;
 
      private void Awake()
      {
-        
          originalPitch = movementAudioSource.pitch;                          
          tank_rb = GetComponent<Rigidbody>();
          
@@ -97,12 +96,15 @@ using UnityEngine.UI;
   
      public void PlayerDied()
      {
-         // Playing the effects on the death of the tank and destroying it.
+         _tankController.SetDeathTrue();
+         
+         // Spawning the explosion particles when player dying at the position of tank
          explosionParticles = Instantiate(explosionEffectPrefab.GetComponent<ParticleSystem>());
          explosionSound = explosionParticles.GetComponent<AudioSource>();
          explosionParticles.gameObject.SetActive(false);
+         explosionParticles.transform.position = transform.position;
          
-         // explosionParticles.transform.position = transform.position;
+         // Playing the effects on the death of the tank and destroying it.
          explosionParticles.gameObject.SetActive((true));
          explosionParticles.Play();
          explosionSound.Play(); 
