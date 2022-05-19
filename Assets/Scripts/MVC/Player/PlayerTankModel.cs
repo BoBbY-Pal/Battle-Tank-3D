@@ -18,8 +18,8 @@ public class PlayerTankModel
     public float maxLaunchForce { get; }
     
     // Health UI
-    public Color fullHealthColor = Color.green;
-    public Color zeroHealthColor = Color.red;
+    public Color fullHealthColor {get;}
+    public Color zeroHealthColor {get;}
     
     public bool isDead { get; set; }
     public bool isFired { get; set; }
@@ -40,6 +40,9 @@ public class PlayerTankModel
         chargeSpeed = (maxLaunchForce - minLaunchForce) / maxChargeTime;
         this.bulletType = bulletType;
         this.speed = speed;
+        
+        fullHealthColor = Color.green;
+        zeroHealthColor = Color.red;
     }
 }
 

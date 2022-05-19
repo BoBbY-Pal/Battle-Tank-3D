@@ -61,7 +61,7 @@ public class PlayerTankController
 
     public void RotatePlayerTankTurret()
     {
-        Vector3 desiredRotation = Vector3.up * tankView.rightJoystick.Horizontal * tankModel.turretRotationRate * Time.deltaTime;
+        Vector3 desiredRotation = Vector3.up * (tankView.rightJoystick.Horizontal * tankModel.turretRotationRate * Time.deltaTime);
         tankView.turret.transform.Rotate(desiredRotation, Space.Self);
     }
 
@@ -123,6 +123,6 @@ public class PlayerTankController
         tankView.shootingAudioSource.clip = tankView.firingClip;
         tankView.shootingAudioSource.Play();
 
-        // tankModel.currentLaunchForce = tankModel.minLaunchForce;
+        tankModel.currentLaunchForce = tankModel.minLaunchForce;
     }
 }

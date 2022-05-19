@@ -15,7 +15,7 @@ MonoBehaviour:
   bulletView: {fileID: 7947392365596030608, guid: b894b97fbbf5e0842bcb28d74cc5067a,
     type: 3}
   bulletType: 1
-  damage: 90
+  damage: 95
   explosionRadius: 5
-  explosionForce: 100
+  explosionForce: 1000
   maxLifeTime: 2

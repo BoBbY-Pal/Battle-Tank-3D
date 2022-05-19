@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BulletView : MonoBehaviour
 {
@@ -11,16 +10,15 @@ public class BulletView : MonoBehaviour
     
     private void Start()
     {
-
         Destroy(gameObject, _bulletController.bulletModel.maxLifeTime);
     }
     
     public void SetBulletController(BulletController controller) => _bulletController = controller;
   
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collision)
     {
-        _bulletController.OnCollisionEnter(collider);
+        _bulletController.OnCollisionEnter(collision);
     }
 
     public void DestroyBullet()

@@ -1,8 +1,9 @@
+using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
- public class PlayerTankView : MonoBehaviour
+ public class PlayerTankView : MonoBehaviour, IDamageable
  {
      public GameObject turret;
      public GameObject explosionEffectPrefab;
@@ -36,9 +37,6 @@ using UnityEngine.UI;
          originalPitch = movementAudioSource.pitch;                          
          tank_rb = GetComponent<Rigidbody>();
          
-         explosionParticles = Instantiate(explosionEffectPrefab.GetComponent<ParticleSystem>());
-         explosionSound = explosionParticles.GetComponent<AudioSource>();
-         explosionParticles.gameObject.SetActive(false);
      }
      
      private void Start()
@@ -46,14 +44,19 @@ using UnityEngine.UI;
          Joystick[] joys = FindObjectsOfType<Joystick>();
          rightJoystick = joys[1];
          leftJoystick = joys[0];
+         _tankController.SetAimSlider();
+         _tankController.SetHealthSlider();
+         
      }
 
      private void Update()
      {
+         
          if (_tankController != null)
          {
              _tankController.EngineAudio();
              _tankController.FireInputCheck();
+             
              
          }
      }
@@ -95,7 +98,11 @@ using UnityEngine.UI;
      public void PlayerDied()
      {
          // Playing the effects on the death of the tank and destroying it.
-         explosionParticles.transform.position = transform.position;
+         explosionParticles = Instantiate(explosionEffectPrefab.GetComponent<ParticleSystem>());
+         explosionSound = explosionParticles.GetComponent<AudioSource>();
+         explosionParticles.gameObject.SetActive(false);
+         
+         // explosionParticles.transform.position = transform.position;
          explosionParticles.gameObject.SetActive((true));
          explosionParticles.Play();
          explosionSound.Play(); 
@@ -104,8 +111,9 @@ using UnityEngine.UI;
          Destroy(gameObject);
      }
 
-     public void TakeDamage(int damage)
+     public void TakeDamage(float damage)
      {
          _tankController.TakeDamage(damage);
      }
+     
  }
