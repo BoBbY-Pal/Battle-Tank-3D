@@ -46,10 +46,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="14568">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="14568" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -84,7 +84,7 @@
       <workItem from="1652767139409" duration="4900000" />
       <workItem from="1652780575795" duration="775000" />
       <workItem from="1652786050919" duration="7491000" />
-      <workItem from="1652810994371" duration="12808000" />
+      <workItem from="1652810994371" duration="26775000" />
     </task>
     <servers />
   </component>
@@ -96,6 +96,25 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MVC/Player/PlayerTankController.cs</url>
+          <line>99</line>
+          <properties documentPath="D:\Game Dev\Unity 3D\Battle-Tank-3D\Assets\Scripts\MVC\Player\PlayerTankController.cs" initialLine="99" containingFunctionPresentation="method 'FireInputCheck'">
+            <startOffsets>
+              <option value="3861" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3862" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -19,21 +19,22 @@ public class PlayerTankController
         if(Mathf.Abs(tankView.leftJoystick.Vertical) < 0.1f && Mathf.Abs(tankView.leftJoystick.Horizontal) < 0.1f) 
         {
             // And if Driving audio is playing
-            if(tankView.movementAudio.clip == tankView.engineDriving) 
+            if(tankView.movementAudioSource.clip == tankView.engineDriving) 
             {   // Change the clip to Idle and play it
-                tankView.movementAudio.clip = tankView.engineIdling;
-                tankView.movementAudio.pitch = Random.Range(tankView.originalPitch - tankModel.pitchRange, tankView.originalPitch + tankModel.pitchRange);
-                tankView.movementAudio.Play();
+                tankView.movementAudioSource.clip = tankView.engineIdling;
+                tankView.movementAudioSource.pitch = Random.Range(tankView.originalPitch - tankModel.pitchRange,
+                                                                  tankView.originalPitch + tankModel.pitchRange);
+                tankView.movementAudioSource.Play();
             }
         }
         else
         {
             // If tank is moving and idling clip is currently plating
-            if(tankView.movementAudio.clip == tankView.engineIdling)
+            if(tankView.movementAudioSource.clip == tankView.engineIdling)
             {
-                tankView.movementAudio.clip = tankView.engineDriving;
-                tankView.movementAudio.pitch = Random.Range(tankView.originalPitch - tankModel.pitchRange, tankView.originalPitch + tankModel.pitchRange);
-                tankView.movementAudio.Play();
+                tankView.movementAudioSource.clip = tankView.engineDriving;
+                tankView.movementAudioSource.pitch = Random.Range(tankView.originalPitch - tankModel.pitchRange, tankView.originalPitch + tankModel.pitchRange);
+                tankView.movementAudioSource.Play();
             }
         }
     }
@@ -86,5 +87,42 @@ public class PlayerTankController
     public void SetAimSlider()
     {
         tankView.aimSlider.value = tankModel.currentLaunchForce;
+    }
+
+    public void FireInputCheck()
+    {
+        tankView.aimSlider.value = tankModel.minLaunchForce;
+        
+        if (tankModel.currentLaunchForce >= tankModel.maxLaunchForce && !tankModel.isFired)
+        {
+            tankModel.currentLaunchForce = tankModel.maxLaunchForce;
+            Fire();
+        }
+        else if (Input.GetMouseButtonDown(0))   // If pressed fire button for the first time
+        {
+            tankModel.isFired = false;
+            tankModel.currentLaunchForce = tankModel.minLaunchForce;
+            tankView.shootingAudioSource.clip = tankView.chargingClip;
+            tankView.shootingAudioSource.Play();
+        }
+        else if (Input.GetMouseButton(0) && !tankModel.isFired)     // If holding fire button
+        {
+            tankModel.currentLaunchForce += tankModel.chargeSpeed * Time.deltaTime;
+            tankView.aimSlider.value = tankModel.currentLaunchForce;
+        }
+        else if (Input.GetMouseButtonUp(0) && !tankModel.isFired)
+        {
+            Fire();
+        }
+    }
+
+    private void Fire()
+    {
+        tankModel.isFired = true;
+        BulletService.Instance.FireBullet(tankModel.bulletType, tankView.fireTransform, tankModel.currentLaunchForce);
+        tankView.shootingAudioSource.clip = tankView.firingClip;
+        tankView.shootingAudioSource.Play();
+
+        // tankModel.currentLaunchForce = tankModel.minLaunchForce;
     }
 }

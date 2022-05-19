@@ -14,11 +14,14 @@ using UnityEngine.UI;
      // Health UI
      public Slider healthSlider;
      public Image fillImage;
-     
-     public AudioClip engineIdling, engineDriving;
-     public AudioSource movementAudio;
 
-     [HideInInspector] public float originalPitch = 0.2f;
+     public AudioSource movementAudioSource;
+     public AudioClip engineIdling, engineDriving;
+
+     public AudioSource shootingAudioSource;
+     public AudioClip chargingClip, firingClip;
+
+     [HideInInspector] public float originalPitch;     // The pitch of the audio source at the start of the scene.
      [HideInInspector] public AudioSource explosionSound;
      [HideInInspector] public ParticleSystem explosionParticles;
      [HideInInspector] public Rigidbody tank_rb;             // Rigidbody reference
@@ -29,16 +32,15 @@ using UnityEngine.UI;
 
      private void Awake()
      {
-         // Store the original pitch of the audio source
-         originalPitch = movementAudio.pitch;
+        
+         originalPitch = movementAudioSource.pitch;                          
          tank_rb = GetComponent<Rigidbody>();
          
          explosionParticles = Instantiate(explosionEffectPrefab.GetComponent<ParticleSystem>());
          explosionSound = explosionParticles.GetComponent<AudioSource>();
          explosionParticles.gameObject.SetActive(false);
      }
-
-
+     
      private void Start()
      {
          Joystick[] joys = FindObjectsOfType<Joystick>();
@@ -48,7 +50,12 @@ using UnityEngine.UI;
 
      private void Update()
      {
-         _tankController.EngineAudio();
+         if (_tankController != null)
+         {
+             _tankController.EngineAudio();
+             _tankController.FireInputCheck();
+             
+         }
      }
 
      private void FixedUpdate()
@@ -59,7 +66,7 @@ using UnityEngine.UI;
          }
      }
      
-     private void MovementController()     //calling this func in fixed update 
+     private void MovementController()     // Handles all the tank related movements
      {
          if (tank_rb)
          {

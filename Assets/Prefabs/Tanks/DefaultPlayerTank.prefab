@@ -1015,10 +1015,12 @@ MonoBehaviour:
   fireTransform: {fileID: 116424181}
   healthSlider: {fileID: 1767709393}
   fillImage: {fileID: 1759842650}
+  movementAudioSource: {fileID: 26768034755241214}
   engineIdling: {fileID: 8300000, guid: 4932ab25b84dd7649b80af68a9660ddc, type: 3}
   engineDriving: {fileID: 8300000, guid: d7ca9fb5aa30155449192b23d7fb3336, type: 3}
-  movementAudio: {fileID: 26768034755241214}
-  cam: {fileID: 0}
+  shootingAudioSource: {fileID: 3978220300882814298}
+  chargingClip: {fileID: 8300000, guid: c17f124fcdc0f5446a72f793898bd74b, type: 3}
+  firingClip: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}
   originalPitch: 0.2
   explosionSound: {fileID: 0}
   explosionParticles: {fileID: 0}

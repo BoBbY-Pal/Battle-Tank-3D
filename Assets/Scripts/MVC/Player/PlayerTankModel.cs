@@ -8,13 +8,13 @@ public class PlayerTankModel
     public int rotationRate { get; }  // Turning speed
     public int turretRotationRate { get;}
     public float pitchRange = 0.2f;     // For transition between sound so that it can be heard smoothly.
-    public BulletType bulletType { get; }
+    public BulletType bulletType { get; }  
     
     // Bullet
     public float chargeSpeed { get; }
     public float maxChargeTime { get; }
     public float minLaunchForce { get; }
-    public float currentLaunchForce { get; }
+    public float currentLaunchForce { get; set; }
     public float maxLaunchForce { get; }
     
     // Health UI

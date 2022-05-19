@@ -11,15 +11,16 @@ public class BulletView : MonoBehaviour
     
     private void Start()
     {
+
         Destroy(gameObject, _bulletController.bulletModel.maxLifeTime);
     }
     
     public void SetBulletController(BulletController controller) => _bulletController = controller;
   
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collider)
     {
-        _bulletController.OnCollisionEnter(other);
+        _bulletController.OnCollisionEnter(collider);
     }
 
     public void DestroyBullet()
