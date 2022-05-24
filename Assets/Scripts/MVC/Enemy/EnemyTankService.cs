@@ -5,7 +5,7 @@ public class EnemyTankService : MonoSingletonGeneric<EnemyTankService>
 {
     public EnemyTankView tankView;
     public TankScriptableObjectList enemyTankList;
-    public BulletScriptableObjectList bulletList;
+    public BulletSOList bulletList;
 
     private void Start()
     {

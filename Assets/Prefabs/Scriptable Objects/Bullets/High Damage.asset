@@ -9,16 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24a8d5653cae41d093ffa7b4b7d98ef7, type: 3}
-  m_Name: RedPlayerTank
+  m_Script: {fileID: 11500000, guid: 83b0da87eb8a405693ec451eaa4917b3, type: 3}
+  m_Name: High Damage
   m_EditorClassIdentifier: 
-  tankType: 1
-  tankControllerType: 0
-  health: 90
-  movementSpeed: 5
-  rotationRate: 110
-  turretRotationRate: 80
+  bulletView: {fileID: 7947392365596030608, guid: b894b97fbbf5e0842bcb28d74cc5067a,
+    type: 3}
   bulletType: 2
-  minLaunchForce: 10
-  maxLaunchForce: 30
-  maxChargeTime: 0.75
+  damage: 100
+  explosionRadius: 5
+  explosionForce: 1000
+  maxLifeTime: 2

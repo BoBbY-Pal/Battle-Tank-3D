@@ -10,4 +10,10 @@ public class EnemyTankController
         tankView = Object.Instantiate(tankPrefab);
     }
 
+    // public void TakeDamage(float damage)
+    // {
+    //     tankModel.currentHealth -= damage;
+    //     
+    //     tankView.Death();
+    // }
 }
