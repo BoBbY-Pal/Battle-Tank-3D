@@ -1,4 +1,6 @@
 ﻿using System;
+using Scriptable_Objects.BulletSO;
+using Scriptable_Objects.TankSO;
 using UnityEngine;
 
 public class EnemyTankService : MonoSingletonGeneric<EnemyTankService>
@@ -9,13 +11,13 @@ public class EnemyTankService : MonoSingletonGeneric<EnemyTankService>
 
     private void Start()
     {
-        CreateEnemyTank();
+        // CreateEnemyTank();
     }
-
-    private EnemyTankController CreateEnemyTank()
-    {
-        EnemyTankModel model = new EnemyTankModel(30, 15, 100);
-        EnemyTankController tank = new EnemyTankController(model, tankView);
-        return tank;
-    }
+    // this commented code was used for creating a tank but right now i'm changing the logic
+    // private EnemyTankController CreateEnemyTank()
+    // {
+    //     // // EnemyTankModel model = new EnemyTankModel(30, 15, 100);
+    //     // EnemyTankController tank = new EnemyTankController(model, tankView);
+    //     // return tank;
+    // }
 }

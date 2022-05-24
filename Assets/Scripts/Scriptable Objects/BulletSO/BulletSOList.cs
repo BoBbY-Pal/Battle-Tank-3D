@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "BulletScriptableObjectList", menuName = "ScriptableObjects/Bullet/NewScriptableObjectList")]
-public class BulletSOList : ScriptableObject
+namespace Scriptable_Objects.BulletSO
 {
-    public BulletSO[] bulletTypeList;
+    [CreateAssetMenu(fileName = "BulletScriptableObjectList", menuName = "ScriptableObjects/Bullet/NewScriptableObjectList")]
+    public class BulletSOList : ScriptableObject
+    {
+        public BulletSO[] bulletTypeList;
+    }
 }

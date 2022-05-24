@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Enums;
+using Scriptable_Objects.BulletSO;
+using UnityEngine;
 
 public class BulletService : MonoSingletonGeneric<BulletService>
 {

@@ -1,8 +1,11 @@
 
-public enum BulletType 
+namespace Enums
 {
-  LowDamage,
-  MediumDamage,
-  HighDamage
+  public enum BulletType 
+  {
+    LowDamage,
+    MediumDamage,
+    HighDamage
   
+  }
 }
