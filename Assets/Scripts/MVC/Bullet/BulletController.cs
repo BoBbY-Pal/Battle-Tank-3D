@@ -12,7 +12,7 @@ public class BulletController
         this.bulletModel = bulletModel;
         bulletView = Object.Instantiate(bulletPrefab, fireTransform.position, fireTransform.rotation);
         bulletView.SetBulletController(this);
-        bulletView.GetComponent<Rigidbody>().velocity = fireTransform.forward * launchForce;
+        bulletView.GetComponent<Rigidbody>().velocity = fireTransform.forward * launchForce;  // Applying velocity to bullet.
     }
     
     public void OnCollisionEnter(Collider other)

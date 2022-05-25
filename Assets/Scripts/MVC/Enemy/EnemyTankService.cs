@@ -9,15 +9,17 @@ public class EnemyTankService : MonoSingletonGeneric<EnemyTankService>
     public TankScriptableObjectList enemyTankList;
     public BulletSOList bulletList;
 
+    public EnemyTankController tankController;
+
     private void Start()
     {
-        // CreateEnemyTank();
+       tankController = CreateEnemyTank();
     }
     // this commented code was used for creating a tank but right now i'm changing the logic
-    // private EnemyTankController CreateEnemyTank()
-    // {
-    //     // // EnemyTankModel model = new EnemyTankModel(30, 15, 100);
-    //     // EnemyTankController tank = new EnemyTankController(model, tankView);
-    //     // return tank;
-    // }
+    private EnemyTankController CreateEnemyTank()
+    {
+        EnemyTankModel model = new EnemyTankModel(30, 15, 100);
+        EnemyTankController tank = new EnemyTankController(model, tankView);
+        return tank;
+    }
 }

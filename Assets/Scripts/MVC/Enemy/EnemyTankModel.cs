@@ -7,7 +7,7 @@ public class EnemyTankModel
     public float currentHealth { get; set; }
     public float movementSpeed { get; }
     public float rotationSpeed { get;  }
-    public float turretRotaionRate { get; }
+    public float turretRotationRate { get; }
     public float minLaunchForce {get; }
     public float maxLaunchForce {get; }
 
@@ -22,8 +22,8 @@ public class EnemyTankModel
     public float patrollingRange {get; set;}
     public float patrolTime { get; }
     public float attackRange {get; set;}
-    public float b_PlayerInRange {get; set;}
-    public float b_PlayerInAttackRange {get; set;}
+    public bool b_PlayerInRange {get; set;}
+    public bool b_PlayerInAttackRange {get; set;}
     
     public Color tankColor { get; set; }
     public Color fullHealthColor { get; }
@@ -40,7 +40,7 @@ public class EnemyTankModel
         maxHealth = enemyInfo.health;
         movementSpeed = enemyInfo.movementSpeed;
         rotationSpeed = enemyInfo.rotationSpeed;
-        turretRotaionRate = enemyInfo.turretRotationRate;
+        turretRotationRate = enemyInfo.turretRotationRate;
         
         b_WalkPoint = false;
         walkPointRange = enemyInfo.walkPointRange;
