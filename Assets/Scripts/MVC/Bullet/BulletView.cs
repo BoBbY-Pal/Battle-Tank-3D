@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BulletView : MonoBehaviour
 {
@@ -7,12 +8,19 @@ public class BulletView : MonoBehaviour
     public LayerMask tankMask;      // layer mask to detect if it's only Tank
     public ParticleSystem explosionParticles;
     public AudioSource explosionAudio;
-    
+    private Rigidbody _rigidbody;
+
     private void Start()
     {
+        _rigidbody = gameObject.GetComponent<Rigidbody>();
         Destroy(gameObject, _bulletController.bulletModel.maxLifeTime);
     }
-    
+
+    private void Update()
+    {   // Dropping bullet like a rocket instead of going straight.
+        transform.forward = _rigidbody.velocity; 
+    }
+
     public void SetBulletController(BulletController controller) => _bulletController = controller;
   
 

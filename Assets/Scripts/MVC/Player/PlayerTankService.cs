@@ -1,4 +1,4 @@
-using Scriptable_Objects.TankSO;
+using Scriptable_Objects.PlayerSO;
 using UnityEngine;
 
 public class PlayerTankService : MonoSingletonGeneric<PlayerTankService>

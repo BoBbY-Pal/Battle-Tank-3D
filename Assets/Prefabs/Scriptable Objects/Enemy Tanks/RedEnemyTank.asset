@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1711e5f957b4ac58c18f7f5367858eb, type: 3}
+  m_Name: RedEnemyTank
+  m_EditorClassIdentifier: 
+  enemyType: 0
+  tankColor: {r: 1, g: 0, b: 0, a: 0}
+  health: 55
+  movementSpeed: 6
+  rotationSpeed: 50
+  turretRotationRate: 45
+  walkPointRange: 50
+  patrollingRange: 25
+  patrolTime: 5
+  bulletType: 2
+  fireRate: 3
+  attackRange: 8
+  maxLaunchForce: 25
+  minLaunchForce: 5

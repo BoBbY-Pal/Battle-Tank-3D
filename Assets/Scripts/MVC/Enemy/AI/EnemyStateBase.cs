@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(EnemyTankView))]
-public class StateManager : MonoBehaviour
+public class EnemyStateBase : MonoBehaviour
 {   
     protected EnemyTankView tankView;
     protected EnemyTankModel tankModel;
@@ -21,16 +21,16 @@ public class StateManager : MonoBehaviour
         this.enabled = true;
     }
     
-    public void ChangeCurrentState(StateManager newState)        // Logic for changing the states
+    public void ChangeCurrentState(EnemyStateBase newEnemyState)        // Logic for changing the states
     {   // if something is already in the current state disable it.
-        if (tankView.currentState != null)
+        if (tankView.currentEnemyState != null)
         {
-            tankView.currentState.OnStateExit();
+            tankView.currentEnemyState.OnStateExit();
         }
         
         // else enter new state to current & enable it.
-        tankView.currentState = newState;
-        tankView.currentState.OnStateEnter();
+        tankView.currentEnemyState = newEnemyState;
+        tankView.currentEnemyState.OnStateEnter();
     }
     
     public virtual void OnStateExit()

@@ -1,7 +1,7 @@
 ﻿using Enums;
 using UnityEngine;
 
-namespace Scriptable_Objects.TankSO
+namespace Scriptable_Objects.PlayerSO
 {
     [ CreateAssetMenu(fileName = "TankScriptableObject", menuName = "ScriptableObjects/Tank/NewScriptableObject") ]
     public class TankScriptableObject : ScriptableObject

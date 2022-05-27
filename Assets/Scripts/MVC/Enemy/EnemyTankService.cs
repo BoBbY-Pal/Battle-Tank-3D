@@ -1,25 +1,35 @@
-﻿using System;
-using Scriptable_Objects.BulletSO;
-using Scriptable_Objects.TankSO;
+﻿using Enums;
+using Scriptable_Objects.EnemySO;
 using UnityEngine;
 
 public class EnemyTankService : MonoSingletonGeneric<EnemyTankService>
 {
     public EnemyTankView tankView;
-    public TankScriptableObjectList enemyTankList;
-    public BulletSOList bulletList;
+    public EnemySOList enemyTankList;
 
     public EnemyTankController tankController;
+    private EnemyType enemyTankType;
 
     private void Start()
     {
-       tankController = CreateEnemyTank();
+        enemyTankType = (EnemyType)Mathf.Floor(Random.Range(0, 2.5f)); 
+        tankController = CreateEnemyTank(enemyTankType);
     }
-    // this commented code was used for creating a tank but right now i'm changing the logic
-    private EnemyTankController CreateEnemyTank()
+    
+    private EnemyTankController CreateEnemyTank(EnemyType tankType)
     {
-        EnemyTankModel model = new EnemyTankModel(30, 15, 100);
-        EnemyTankController tank = new EnemyTankController(model, tankView);
-        return tank;
+        foreach (EnemySO enemyTank in enemyTankList.enemies)
+        {
+            if (enemyTank.enemyType == enemyTankType)
+            {
+                EnemyTankModel model = new EnemyTankModel(enemyTankList.enemies[(int) tankType]);
+                EnemyTankController tank = new EnemyTankController(model, tankView);
+                return tank;
+            }
+
+        }
+
+        return null;
     }
+    
 }

@@ -18,13 +18,13 @@ public class EnemyTankView : MonoBehaviour, IDamageable
     public GameObject explosionPrefab;
     public LayerMask playerLayerMask, groundLayerMask;
     
-    public Patrolling patrollingState;
-    public Chasing chasingState;
-    public Attacking attackingState;
+    public PatrollingState patrollingState;
+    public ChasingState chasingState;
+    public AttackingState attackingState;
     
     [SerializeField] private EnemyState initialState;
     [HideInInspector] public EnemyState activeState;
-    [HideInInspector] public StateManager currentState;
+    [HideInInspector] public EnemyStateBase currentEnemyState;
 
     [HideInInspector] public Transform playerTransform;
     [HideInInspector] public ParticleSystem explosionParticles;
@@ -50,37 +50,40 @@ public class EnemyTankView : MonoBehaviour, IDamageable
         InitializeStates();
     }
 
+    private void FixedUpdate()
+    {
+        _tankController.UpdateTankController();
+    }
+    
     private void InitializeStates()
     {
         switch(initialState)
         {
             case EnemyState.Patrolling:
             {
-                currentState = patrollingState;
+                currentEnemyState = patrollingState;
                 break;
             }
             case EnemyState.Chasing:
             {
-                currentState = chasingState;
+                currentEnemyState = chasingState;
                 break;
             }
             case EnemyState.Attacking:
             {
-                currentState = attackingState;
+                currentEnemyState = attackingState;
                 break;
             }
             default:
             {
-                currentState = null;
+                currentEnemyState = null;
                 break;
             }
         }
+
+        if (currentEnemyState != null) currentEnemyState.OnStateEnter();
     }
 
-    private void FixedUpdate()
-    {
-        _tankController.UpdateTankController();
-    }
 
     public void TakeDamage(float damage)
     {

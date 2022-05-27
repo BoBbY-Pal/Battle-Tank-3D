@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 829b8f08c5e045df8557e47fbe318a66, type: 3}
-  m_Name: EnemyTankLIst
+  m_Script: {fileID: 11500000, guid: 97804268465549fa81eaadf1dc8a6ad7, type: 3}
+  m_Name: EnemyTankList
   m_EditorClassIdentifier: 
-  tanks:
-  - {fileID: 11400000, guid: 4f1fd5ff6edf82a46855f832dc34e2e5, type: 2}
-  - {fileID: 11400000, guid: 9a87e3b66f10a95468f73497992e0023, type: 2}
-  - {fileID: 11400000, guid: 851b428e1515d31459c67af49d86b2f4, type: 2}
+  enemies:
+  - {fileID: 11400000, guid: e565f3d73254f6447a35fd8ace64e68a, type: 2}
+  - {fileID: 11400000, guid: 5f4d68a53e3606e478c51ea3868eb6ed, type: 2}
+  - {fileID: 11400000, guid: 92383f1320c05c04ab04624e9ac1140c, type: 2}
