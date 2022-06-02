@@ -14,7 +14,7 @@ public class AttackingState : EnemyStateBase
     {
         if(!tankModel.b_PlayerInRange && !tankModel.b_PlayerInAttackRange)
             tankView.currentEnemyState.ChangeCurrentState(tankView.patrollingState);
-        else if (tankModel.b_PlayerInRange && tankModel.b_PlayerInAttackRange)
+        else if (tankModel.b_PlayerInRange && !tankModel.b_PlayerInAttackRange)
             tankView.currentEnemyState.ChangeCurrentState(tankView.chasingState);
         
         StartCoroutine(Attack());
@@ -26,7 +26,7 @@ public class AttackingState : EnemyStateBase
         if (!tankView.playerTransform)
         {
             tankView.currentEnemyState.ChangeCurrentState(tankView.patrollingState);
-            // return;
+            yield break;
         }
 
         tankView.navMeshAgent.SetDestination(tankView.transform.position);
@@ -70,7 +70,7 @@ public class AttackingState : EnemyStateBase
     {
         BulletService.Instance.SetBulletProperties(tankModel.bulletType, tankView.fireTransform,
                                 EnemyTankService.Instance.tankController.GetRandLaunchForce());
-        tankView.shootingAudio.Play();
+        tankView.shootingAudio.clip = tankView.fireClip;
         tankView.shootingAudio.Play();
     }
 

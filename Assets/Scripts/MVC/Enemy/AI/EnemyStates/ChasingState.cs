@@ -14,6 +14,8 @@ public class ChasingState : EnemyStateBase
             tankView.currentEnemyState.ChangeCurrentState(tankView.patrollingState);
         else if(tankModel.b_PlayerInRange && tankModel.b_PlayerInAttackRange)
             tankView.currentEnemyState.ChangeCurrentState(tankView.attackingState);
+        
+        ChasePlayer(); 
     }
 
     private void ChasePlayer()
@@ -25,9 +27,12 @@ public class ChasingState : EnemyStateBase
         }
 
         tankView.navMeshAgent.SetDestination(tankView.playerTransform.position);
-        if(Mathf.Abs(Vector3.SignedAngle(tankView.transform.forward, tankView.turret.transform.forward, Vector3.up)) > 1)
+        if (Mathf.Abs(Vector3.SignedAngle(tankView.transform.forward, tankView.turret.transform.forward, Vector3.up)) > 1)
+        {
             tankView.turret.transform.Rotate(GetRequiredTurretRotation(), Space.Self);
+        }
     }
+
 
     private Vector3 GetRequiredTurretRotation()
     {
@@ -35,7 +40,7 @@ public class ChasingState : EnemyStateBase
         float angle = Vector3.SignedAngle(tankView.transform.forward, tankView.turret.transform.forward, Vector3.up);
         if (angle < 0)
         {
-            desiredRotation = Vector3.up * tankModel.turretRotationRate * Time.deltaTime; 
+            desiredRotation = Vector3.up * (tankModel.turretRotationRate * Time.deltaTime); 
         }
         else if (angle > 0)
         {

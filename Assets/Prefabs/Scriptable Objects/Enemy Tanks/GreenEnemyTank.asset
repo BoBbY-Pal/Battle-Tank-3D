@@ -17,7 +17,7 @@ MonoBehaviour:
   health: 65
   movementSpeed: 9
   rotationSpeed: 60
-  turretRotationRate: 50
+  turretRotationRate: 40
   walkPointRange: 50
   patrollingRange: 25
   patrolTime: 5

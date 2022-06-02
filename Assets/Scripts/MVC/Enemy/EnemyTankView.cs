@@ -40,9 +40,9 @@ public class EnemyTankView : MonoBehaviour, IDamageable
     private void Start()
     {
         _tankController.SetHealthUI();
-        if (PlayerTankService.Instance.tankView)
+        if (PlayerTankService.Instance.tankViewPrefab)
         {
-            playerTransform = PlayerTankService.Instance.tankView.transform;
+            playerTransform = PlayerTankService.Instance.player.GetPlayerTransform();
         }
 
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -81,7 +81,7 @@ public class EnemyTankView : MonoBehaviour, IDamageable
             }
         }
 
-        if (currentEnemyState != null) currentEnemyState.OnStateEnter();
+        currentEnemyState.OnStateEnter();
     }
 
 

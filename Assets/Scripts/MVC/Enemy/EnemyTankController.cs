@@ -46,11 +46,11 @@ public class EnemyTankController
             tankView.healthSlider.gameObject.SetActive(true);
         }
 
-        await Task.Delay(3500); //new WaitForSeconds(3f);
-        if (tankView)
-        {
-            tankView.healthSlider.gameObject.SetActive(false);
-        }
+        //await Task.Delay(3500); //new WaitForSeconds(3f);
+        // if (tankView)
+        // {
+        //     tankView.healthSlider.gameObject.SetActive(false);
+        // }
     }
 
     public void SetDeathTrue()

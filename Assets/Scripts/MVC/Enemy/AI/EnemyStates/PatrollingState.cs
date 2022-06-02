@@ -7,7 +7,7 @@ public class PatrollingState : EnemyStateBase
     protected override void Start()
     {
         base.Start();
-        ChangeWalkPoint();
+        // ChangeWalkPoint();
         StartCoroutine(ChangeWalkPoint());
     }
 
@@ -26,7 +26,7 @@ public class PatrollingState : EnemyStateBase
 
     private void Update()
     { 
-        if (!tankModel.b_PlayerInRange && !tankModel.b_PlayerInAttackRange)
+        if (tankModel.b_PlayerInRange && !tankModel.b_PlayerInAttackRange)
             tankView.currentEnemyState.ChangeCurrentState(tankView.chasingState);
         else if(tankModel.b_PlayerInRange && tankModel.b_PlayerInAttackRange)
             tankView.currentEnemyState.ChangeCurrentState(tankView.attackingState);

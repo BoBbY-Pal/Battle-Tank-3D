@@ -12,7 +12,11 @@ public class PlayerTankController
         tankView.SetTankController(this);
         Debug.Log("Tank Created", tankView);
     }
-    
+
+    public Transform GetPlayerTransform()
+    {
+        return tankView.transform;
+    }
     public void EngineAudio()
     {
         // If there is no input (Tank Idle State)

@@ -22,7 +22,8 @@ public class EnemyStateBase : MonoBehaviour
     }
     
     public void ChangeCurrentState(EnemyStateBase newEnemyState)        // Logic for changing the states
-    {   // if something is already in the current state disable it.
+    {   
+        // if something is already in the current state disable it.
         if (tankView.currentEnemyState != null)
         {
             tankView.currentEnemyState.OnStateExit();
