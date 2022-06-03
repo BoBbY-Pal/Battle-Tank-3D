@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
 using UnityEngine;
 
 public class EnemyTankController
@@ -39,18 +39,18 @@ public class EnemyTankController
                                               tankModel.currentHealth / tankModel.maxHealth);
     }
 
-    public async void ShowHealthUI()
+    public void ShowHealthUI()
     {
         if (tankView)
         {
             tankView.healthSlider.gameObject.SetActive(true);
         }
 
-        //await Task.Delay(3500); //new WaitForSeconds(3f);
-        // if (tankView)
-        // {
-        //     tankView.healthSlider.gameObject.SetActive(false);
-        // }
+        // yield return new WaitForSeconds(3f); //new WaitForSeconds(3f);
+        //  if (tankView)
+        //  {
+        //      tankView.healthSlider.gameObject.SetActive(false);
+        //  }
     }
 
     public void SetDeathTrue()

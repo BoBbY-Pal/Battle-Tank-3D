@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 2
   tankColor: {r: 0.0037735105, g: 1, b: 0.11123989, a: 0}
-  health: 65
+  health: 100
   movementSpeed: 9
   rotationSpeed: 60
   turretRotationRate: 40

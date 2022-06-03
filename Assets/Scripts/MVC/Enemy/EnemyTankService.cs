@@ -1,28 +1,30 @@
-﻿using Enums;
+﻿using System;
+using Enums;
+using Random = UnityEngine.Random;
 using Scriptable_Objects.EnemySO;
-using UnityEngine;
 
 public class EnemyTankService : MonoSingletonGeneric<EnemyTankService>
 {
     public EnemyTankView tankView;
     public EnemySOList enemyTankList;
-
     public EnemyTankController tankController;
+
     private EnemyType enemyTankType;
 
     private void Start()
     {
-        enemyTankType = (EnemyType)Mathf.Floor(Random.Range(0, 2.5f)); 
-        tankController = CreateEnemyTank(enemyTankType);
+        int lengthOfEnum = Enum.GetValues(typeof(EnemyType)).Length;
+        enemyTankType = (EnemyType) Random.Range(0, lengthOfEnum);
+        tankController = CreateEnemyTank();
     }
     
-    private EnemyTankController CreateEnemyTank(EnemyType tankType)
+    private EnemyTankController CreateEnemyTank()
     {
         foreach (EnemySO enemyTank in enemyTankList.enemies)
         {
             if (enemyTank.enemyType == enemyTankType)
             {
-                EnemyTankModel model = new EnemyTankModel(enemyTankList.enemies[(int) tankType]);
+                EnemyTankModel model = new EnemyTankModel(enemyTankList.enemies[(int) enemyTankType]);
                 EnemyTankController tank = new EnemyTankController(model, tankView);
                 return tank;
             }
