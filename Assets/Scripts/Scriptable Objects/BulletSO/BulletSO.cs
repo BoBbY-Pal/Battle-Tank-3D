@@ -1,21 +1,24 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using Enums;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "BulletScriptableObject", menuName = "ScriptableObjects/Bullet/NewScriptableObject")]
-public class BulletSO : ScriptableObject
+namespace Scriptable_Objects.BulletSO
 {
-     [Header("Prefab")] 
-     public BulletView bulletView;
+     [CreateAssetMenu(fileName = "BulletScriptableObject", menuName = "ScriptableObjects/Bullet/NewScriptableObject")]
+     public class BulletSO : ScriptableObject
+     {
+          [Header("Prefab")] 
+          public BulletView bulletView;
      
-     [Header("Bullet Type")]
-     public BulletType bulletType;
+          [Header("Bullet Type")]
+          public BulletType bulletType;
 
-     [Header("Shooting Parameter")] 
-     public int damage;
-     public float explosionRadius;
-     public float explosionForce;
+          [Header("Shooting Parameter")] 
+          public int damage;
+          public float explosionRadius;
+          public float explosionForce;
      
-     [Header("Durability")] 
-     public float maxLifeTime;
+          [Header("Durability")] 
+          public float maxLifeTime;
+     }
 }
 

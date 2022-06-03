@@ -1,15 +1,17 @@
-
-public enum TankType
+namespace Enums
 {
-    None,
-    Red,
-    Blue,
-    Green
+    public enum TankType
+    {
+        None,
+        Red,
+        Blue,
+        Green
         
-}
+    }
 
-public enum TankControllerType
-{
-    Player,
-    Enemey
+    public enum TankControllerType
+    {
+        Player,
+        Enemy
+    }
 }
