@@ -68,7 +68,7 @@ public class AttackingState : EnemyStateBase
 
     private void FireBullet()
     {
-        BulletService.Instance.SetBulletProperties(tankModel.bulletType, tankView.fireTransform,
+        BulletService.Instance.CreateBullet(tankModel.bulletType, tankView.fireTransform,
                                 EnemyTankService.Instance.tankController.GetRandLaunchForce());
         tankView.shootingAudio.clip = tankView.fireClip;
         tankView.shootingAudio.Play();

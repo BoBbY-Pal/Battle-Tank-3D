@@ -1,3 +1,4 @@
+using System;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,9 +46,8 @@ using UnityEngine.UI;
          leftJoystick = joys[0];
          _tankController.SetAimSlider();
          _tankController.SetHealthSlider();
-         
      }
-
+     
      private void Update()
      {
          

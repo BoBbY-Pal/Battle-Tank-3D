@@ -135,14 +135,36 @@ public class PlayerTankController
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void Fire()
     {
         tankModel.isFired = true;
-        BulletService.Instance.SetBulletProperties(tankModel.bulletType, tankView.fireTransform, tankModel.currentLaunchForce);
+        BulletService.Instance.CreateBullet(tankModel.bulletType, tankView.fireTransform, tankModel.currentLaunchForce);
         tankView.shootingAudioSource.clip = tankView.firingClip;
         tankView.shootingAudioSource.Play();
 
         tankModel.currentLaunchForce = tankModel.minLaunchForce;
+        FireAchievement();
+    }
+
+    public PlayerTankModel GetModel() =>   tankModel; // Getter for Enemy Tank Model
+    
+    public void SubscribeEvents()
+    {
+        EventHandler.Instance.OnBulletFired += FireAchievement;
+    }
+
+    public void UnSubscribeEvents()
+    {
+        EventHandler.Instance.OnBulletFired -= FireAchievement;
+    }
+
+    public void FireAchievement()
+    {
+        tankModel.bulletCount++;
+        AchievementSystem.Instance.BulletsFiredCountCheck(tankModel.bulletCount);
+        EventHandler.Instance.InvokeOnBulletFired();
+        
     }
 
 }
