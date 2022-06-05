@@ -48,6 +48,8 @@ public class EnemyTankView : MonoBehaviour, IDamageable
         navMeshAgent = GetComponent<NavMeshAgent>();
         SetEnemyTankMaterial();
         InitializeStates();
+        
+        CameraController.Instance.AddTargetPosition(this.transform);
     }
 
     private void FixedUpdate()
@@ -96,6 +98,9 @@ public class EnemyTankView : MonoBehaviour, IDamageable
         explosionParticles.gameObject.SetActive(true);
         explosionParticles.Play();
         explosionAudio.Play();
+        
+        CameraController.Instance.RemoveTargetPosition(this.transform);  
+        
         Destroy(gameObject);
     }
     

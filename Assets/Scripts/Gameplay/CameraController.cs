@@ -7,19 +7,23 @@ using UnityEngine.PlayerLoop;
 
 public class CameraController : MonoSingletonGeneric<CameraController>
 {
-    public float dampTime = 0.2f;
-    public float screenEdgeBuffer = 4f;
-    public float minSize = 6.5f;
-    /*[HideInInspector]*/ public Transform[] targets;
+    private List<Transform> targets = new List<Transform>();
+    [SerializeField] private Transform[] endTargets = new Transform[2];
+    [SerializeField] private float dampTime = 0.2f;
+    [SerializeField] private float screenEdgeBuffer = 4f;
+    [SerializeField] private float minSize = 6.5f;
 
-    private Camera _camera;
+    private float originalDamptime;
     private float zoomSpeed;
     private Vector3 moveVelocity;
     private Vector3 desiredPosition;
+    private Camera _camera;
     
     protected override void Awake()
     {
+        base.Awake();
         _camera = GetComponentInChildren<Camera>();
+        originalDamptime = dampTime;
     }
 
     private void FixedUpdate()
@@ -37,17 +41,17 @@ public class CameraController : MonoSingletonGeneric<CameraController>
     private void FindAvgPosition()  // Find the average position b/w two targets. 
     {
         Vector3 averagePos = new Vector3();
-        int numTargets = 0;
-        for (int i = 0; i < targets.Length; i++)
+        int numOfTargets = 0;
+        for (int i = 0; i < targets.Count; i++)
         {
             if(!targets[i].gameObject.activeSelf) 
                 continue;
             averagePos += targets[i].position;
-            numTargets++;
+            numOfTargets++;
         }
 
-        if (numTargets > 0)
-            averagePos /= numTargets;
+        if (numOfTargets > 0)
+            averagePos /= numOfTargets;
 
         averagePos.y = transform.position.y;
         desiredPosition = averagePos;
@@ -69,7 +73,7 @@ public class CameraController : MonoSingletonGeneric<CameraController>
         
         Vector3 desiredLocalPos = transform.InverseTransformPoint(desiredPosition);
         float size = 0f;
-        for (int i = 0; i < targets.Length; i++)
+        for (int i = 0; i < targets.Count; i++)
         {
             if(!targets[i].gameObject.activeSelf)
                 continue;
@@ -90,5 +94,34 @@ public class CameraController : MonoSingletonGeneric<CameraController>
         FindAvgPosition();
         transform.position = desiredPosition;
         _camera.orthographicSize = FindRequiredSize();
+    }
+
+    public void AddTargetPosition(Transform target)
+    {
+        targets.Add(target);
+    }
+    
+    public void RemoveTargetPosition(Transform target)
+    {
+        targets.Remove(target);
+    }
+
+    public void SetCameraWithEndTargets()
+    {
+    
+        for (int i = 0; i < endTargets.Length; i++)
+        {
+            targets.Add(endTargets[i]);
+            dampTime = 2.5f;
+        }
+    }
+    
+    public void RemoveCameraEndTargets()
+    {
+        for (int i = 0; i < endTargets.Length; i++)
+        {
+            targets.Remove(endTargets[i]);
+            dampTime = originalDamptime;
+        }
     }
 }

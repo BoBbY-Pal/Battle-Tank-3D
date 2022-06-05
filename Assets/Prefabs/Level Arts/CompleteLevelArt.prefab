@@ -778,7 +778,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4039464181933366
 Transform:
@@ -976,12 +976,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4308940059654910}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cacti
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4308940059654910
 Transform:
@@ -2543,12 +2543,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4173912048182016}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4173912048182016
 Transform:
@@ -2777,7 +2777,7 @@ GameObject:
   - component: {fileID: 136951873752744072}
   m_Layer: 7
   m_Name: Cliff
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -3164,7 +3164,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4733755607011886
 Transform:
@@ -3251,7 +3251,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4709854094388718
 Transform:
@@ -3528,12 +3528,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4640372217643320}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OilField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4640372217643320
 Transform:
@@ -3565,12 +3565,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4925301389500698}
   - component: {fileID: 108508902704731568}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Directional light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4925301389500698
 Transform:
@@ -3847,12 +3847,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4400793842168200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Military
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4400793842168200
 Transform:
@@ -6019,7 +6019,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4243077974199408
 Transform:
@@ -6761,7 +6761,7 @@ GameObject:
   - component: {fileID: 136085001321775250}
   m_Layer: 7
   m_Name: Cliff (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -8083,7 +8083,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4813453672545610
 Transform:
@@ -8115,12 +8115,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4366463266053016}
+  - component: {fileID: 2054769397}
   m_Layer: 7
   m_Name: CompleteLevelArt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4366463266053016
 Transform:
@@ -8147,6 +8148,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &2054769397
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633404186159690}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1644857102039396
 GameObject:
   m_ObjectHideFlags: 0
@@ -8490,7 +8507,7 @@ GameObject:
   - component: {fileID: 136509398836690492}
   m_Layer: 7
   m_Name: Cliff (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -8864,7 +8881,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4439554098030622
 Transform:
@@ -8943,12 +8960,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4777080953605170}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dunes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4777080953605170
 Transform:
@@ -9097,7 +9114,7 @@ GameObject:
   - component: {fileID: 136581025442490430}
   m_Layer: 7
   m_Name: Cliff (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -10144,12 +10161,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4582193760978134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boundaries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4582193760978134
 Transform:
@@ -10264,7 +10281,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4620173435047246
 Transform:
@@ -10400,7 +10417,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4755110637706228
 Transform:
@@ -11415,7 +11432,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4
+  m_StaticEditorFlags: 12
   m_IsActive: 1
 --- !u!4 &4826411104172418
 Transform:
