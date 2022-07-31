@@ -11,6 +11,7 @@ public class PlayerTankController
         SetHealthSlider();
         tankView.SetTankController(this);
         Debug.Log("Tank Created", tankView);
+        SubscribeEvents();
     }
 
     public Transform GetPlayerTransform()
@@ -83,6 +84,7 @@ public class PlayerTankController
     public void SetDeathTrue()
     {
         tankModel.isDead = true;
+        UnSubscribeEvents();
     }
     
     public void SetHealthSlider()
@@ -144,27 +146,26 @@ public class PlayerTankController
         tankView.shootingAudioSource.Play();
 
         tankModel.currentLaunchForce = tankModel.minLaunchForce;
-        FireAchievement();
+        // FireAchievement();
+        EventHandler.Instance.InvokeOnBulletFired(++tankModel.bulletCount);
     }
 
     public PlayerTankModel GetModel() =>   tankModel; // Getter for Enemy Tank Model
     
     public void SubscribeEvents()
     {
-        EventHandler.Instance.OnBulletFired += FireAchievement;
+        EventHandler.Instance.OnBulletFired += AchievementSystem.Instance.BulletsFiredAchievement;
     }
 
     public void UnSubscribeEvents()
     {
-        EventHandler.Instance.OnBulletFired -= FireAchievement;
+        EventHandler.Instance.OnBulletFired -= AchievementSystem.Instance.BulletsFiredAchievement;
     }
 
-    private void FireAchievement()
-    {
-        tankModel.bulletCount++;
-        AchievementSystem.Instance.BulletsFiredCountCheck(tankModel.bulletCount);
-        EventHandler.Instance.InvokeOnBulletFired();
-        
-    }
+    // private void FireAchievement()
+    // {
+    //     // tankModel.bulletCount++;
+    //     
+    // }
 
 }

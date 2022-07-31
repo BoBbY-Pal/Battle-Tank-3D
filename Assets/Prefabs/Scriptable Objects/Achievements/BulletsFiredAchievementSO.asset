@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   achievements:
   - name: Destruction Started
-    info: Fire 5 Bullets
+    info: Fired 5 Bullets
     selectAchievementType: 1
     requirement: 5
   - name: Destructor
-    info: Fire 20 Bullets
-    selectAchievementType: 0
+    info: Fired 20 Bullets
+    selectAchievementType: 2
     requirement: 20
+  - name: Overpowered!
+    info: Fired 50 Bullets
+    selectAchievementType: 3
+    requirement: 50

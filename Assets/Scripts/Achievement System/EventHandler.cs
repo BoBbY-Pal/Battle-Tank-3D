@@ -2,12 +2,12 @@
 
 public class EventHandler : MonoSingletonGeneric<EventHandler>
 {
-    public event Action OnBulletFired;
+    public event Action<int> OnBulletFired;
     // public event Action OnEnemyDeath;
 
-    public void InvokeOnBulletFired()
+    public void InvokeOnBulletFired(int bulletCount)
     {
-        OnBulletFired?.Invoke();
+        OnBulletFired?.Invoke(bulletCount);
     }
 
     // public void InvokeOnEnemyDeath()
