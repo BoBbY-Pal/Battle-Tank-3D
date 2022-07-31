@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e3b74f5e4847adb2e79c71d6c71329, type: 3}
   m_Name: EnemiesKilledAchievementSO
   m_EditorClassIdentifier: 
-  achievements: []
+  achievements:
+  - name: First Kill
+    info: Congrats you got your first!
+    selectAchievement: 1
+    requirement: 1

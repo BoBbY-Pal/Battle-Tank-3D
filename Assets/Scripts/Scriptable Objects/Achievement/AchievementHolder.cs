@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "AchievementHolder", menuName = "ScriptableObjects/Achievement/NewAchievementListSO")]
 public class AchievementHolder : ScriptableObject

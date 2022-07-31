@@ -146,26 +146,26 @@ public class PlayerTankController
         tankView.shootingAudioSource.Play();
 
         tankModel.currentLaunchForce = tankModel.minLaunchForce;
-        // FireAchievement();
-        EventHandler.Instance.InvokeOnBulletFired(++tankModel.bulletCount);
+    
+        EventHandler.Instance.InvokeBulletFiredEvent(++tankModel.bulletsFired);
     }
 
     public PlayerTankModel GetModel() =>   tankModel; // Getter for Enemy Tank Model
-    
-    public void SubscribeEvents()
+
+    private void SubscribeEvents()
     {
-        EventHandler.Instance.OnBulletFired += AchievementSystem.Instance.BulletsFiredAchievement;
+        EventHandler.Instance.OnEnemyDeath += UpdateEnemiesKilledCount; 
+        EventHandler.Instance.OnBulletFired += AchievementHandler.Instance.BulletsFiredAchievement;
     }
 
-    public void UnSubscribeEvents()
+    private void UnSubscribeEvents()
     {
-        EventHandler.Instance.OnBulletFired -= AchievementSystem.Instance.BulletsFiredAchievement;
+        EventHandler.Instance.OnEnemyDeath -= UpdateEnemiesKilledCount;
+        EventHandler.Instance.OnBulletFired -= AchievementHandler.Instance.BulletsFiredAchievement;
     }
 
-    // private void FireAchievement()
-    // {
-    //     // tankModel.bulletCount++;
-    //     
-    // }
-
+    private void UpdateEnemiesKilledCount()
+    {
+        AchievementHandler.Instance.EnemyKilledAchievement(++tankModel.enemiesKilled);
+    }
 }
