@@ -15,9 +15,9 @@ MonoBehaviour:
   achievements:
   - name: Destruction Started
     info: Fire 5 Bullets
-    selectAchievement: 1
+    selectAchievementType: 1
     requirement: 5
   - name: Destructor
     info: Fire 20 Bullets
-    selectAchievement: 2
+    selectAchievementType: 0
     requirement: 20

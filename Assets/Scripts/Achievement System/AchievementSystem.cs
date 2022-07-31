@@ -3,20 +3,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class AchievementSystem : MonoSingletonGeneric<AchievementSystem>
 {
-    [SerializeField] private AchievementHolder achievementSOList;
-    [SerializeField] private CanvasRenderer AchievementPanel;
-    [SerializeField] private Text AchievementName;
-    [SerializeField] private Text AchievementInfo;
+    [SerializeField] private AchievementHolder achievementSoList;
+    [SerializeField] private CanvasRenderer achievementPanel;
+    [SerializeField] private Text achievementName;
+    [SerializeField] private Text achievementInfo;
     private int currentBulletFiredAchivementLevel;
     private int currentEnemiesKilledAchievementLevel;
 
-    private int count = 0;
-    private int Killed = 0;
-    public TextMeshProUGUI text1;
-    public TextMeshProUGUI text2;
+    private int _bulletCount = 0;
+    private int _deathCount = 0;
+    public TextMeshProUGUI bulletCountTxt;
+    public TextMeshProUGUI deathCountTxt;
 
 
     void Start()
@@ -24,24 +23,23 @@ public class AchievementSystem : MonoSingletonGeneric<AchievementSystem>
         currentBulletFiredAchivementLevel = 0;
         currentEnemiesKilledAchievementLevel = 0;
         // EventHandler.Instance.OnEnemyDeath += EnemyDeathCountCheck;
-        text1 = FindObjectOfType<TextMeshProUGUI>();
+        bulletCountTxt = FindObjectOfType<TextMeshProUGUI>();
     }
 
 
-    public void BulletsFiredCountCheck(int bulletCount)
+    public void BulletsFiredCountCheck(int count)
     {
-        count = bulletCount;
-        text1.text = " " + count;
+        _bulletCount = count;
+        bulletCountTxt.text = "Bullet Count: " + _bulletCount;
 
-        for (int i = 0; i < achievementSOList.bulletsFiredAchievementSO.achievements.Length; i++)
+        for (int i = 0; i < achievementSoList.bulletsFiredAchievementSO.achievements.Length; i++)
         {
 
             if (i != currentBulletFiredAchivementLevel) continue;
-            if (achievementSOList.bulletsFiredAchievementSO.achievements[i].requirement == bulletCount)
+            if (achievementSoList.bulletsFiredAchievementSO.achievements[i].requirement == count)
             {
-                
-                StartCoroutine(UnlockAchievement(achievementSOList.bulletsFiredAchievementSO.achievements[i].name,
-                    achievementSOList.bulletsFiredAchievementSO.achievements[i].info));
+                StartCoroutine(UnlockAchievement(achievementSoList.bulletsFiredAchievementSO.achievements[i].name,
+                    achievementSoList.bulletsFiredAchievementSO.achievements[i].info));
                 currentBulletFiredAchivementLevel = i + 1;
             }
             break;
@@ -65,13 +63,13 @@ public class AchievementSystem : MonoSingletonGeneric<AchievementSystem>
     //         break;
     //     }
     // }
-    IEnumerator UnlockAchievement(string AchievementName, string AchievementInfo)
+    IEnumerator UnlockAchievement(string achievementName, string achievementInfo)
     {
-        this.AchievementName.text = AchievementName;
-        this.AchievementInfo.text = AchievementInfo;
-        AchievementPanel.gameObject.SetActive(true);
+        this.achievementName.text = achievementName;
+        this.achievementInfo.text = achievementInfo;
+        achievementPanel.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        AchievementPanel.gameObject.SetActive(false);
+        achievementPanel.gameObject.SetActive(false);
     }
 
 

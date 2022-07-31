@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 [CreateAssetMenu(fileName = "BulletsFiredAchievementSO", menuName = "ScriptableObjects/Achievement/NewBulletsFiredAchievementSO")]
@@ -11,17 +9,17 @@ public class BulletAchievementSO : ScriptableObject
     [Serializable]
     public class AchievementType
     {
-        public enum BulletAchievements
+        public string name;
+        public string info;
+        public BulletAchievementType selectAchievementType;
+        public int requirement;
+        
+        public enum BulletAchievementType
         {
             None,
             JustGettingStarted,
             Destructor,
             Rampage,
         }
-
-        public string name;
-        public string info;
-        public BulletAchievements selectAchievement;
-        public int requirement;
     }
 }

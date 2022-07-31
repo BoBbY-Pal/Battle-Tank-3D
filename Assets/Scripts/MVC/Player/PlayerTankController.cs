@@ -159,7 +159,7 @@ public class PlayerTankController
         EventHandler.Instance.OnBulletFired -= FireAchievement;
     }
 
-    public void FireAchievement()
+    private void FireAchievement()
     {
         tankModel.bulletCount++;
         AchievementSystem.Instance.BulletsFiredCountCheck(tankModel.bulletCount);
