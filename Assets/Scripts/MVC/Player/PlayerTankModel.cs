@@ -24,6 +24,8 @@ public class PlayerTankModel
     
     public bool isDead { get; set; }
     public bool isFired { get; set; }
+    public int bulletsFired { get; set; }
+    public int enemiesKilled { get; set; }
 
     public PlayerTankModel (int speed, int currentHealth, int rotationRate, int turretRotationRate, 
                             float maxLaunchForce, float minLaunchForce, float maxChargeTime, BulletType bulletType)

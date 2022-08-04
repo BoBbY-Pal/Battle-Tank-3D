@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e3b74f5e4847adb2e79c71d6c71329, type: 3}
+  m_Name: EnemiesKilledAchievementSO
+  m_EditorClassIdentifier: 
+  achievements:
+  - name: First Kill
+    info: Congrats you got your first!
+    selectAchievement: 1
+    requirement: 1

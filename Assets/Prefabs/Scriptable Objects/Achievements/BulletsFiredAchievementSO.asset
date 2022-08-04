@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9da59b927a4b8c892558a942f4ef00, type: 3}
+  m_Name: BulletsFiredAchievementSO
+  m_EditorClassIdentifier: 
+  achievements:
+  - name: Destruction Started
+    info: Fired 5 Bullets
+    selectAchievementType: 1
+    requirement: 5
+  - name: Destructor
+    info: Fired 20 Bullets
+    selectAchievementType: 2
+    requirement: 20
+  - name: Overpowered!
+    info: Fired 50 Bullets
+    selectAchievementType: 3
+    requirement: 50

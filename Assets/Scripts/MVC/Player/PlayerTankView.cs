@@ -1,3 +1,4 @@
+using System;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +30,7 @@ using UnityEngine.UI;
      [HideInInspector] public Joystick rightJoystick, leftJoystick;
 
      private PlayerTankController _tankController;
+
      
 
      private void Awake()
@@ -46,8 +48,9 @@ using UnityEngine.UI;
          _tankController.SetAimSlider();
          _tankController.SetHealthSlider();
          
+         CameraController.Instance.AddTargetPosition(this.transform);
      }
-
+     
      private void Update()
      {
          
@@ -108,6 +111,10 @@ using UnityEngine.UI;
          explosionParticles.gameObject.SetActive((true));
          explosionParticles.Play();
          explosionSound.Play(); 
+         
+         // Adjusting camera 
+         CameraController.Instance.RemoveTargetPosition(this.transform);
+         CameraController.Instance.SetCameraWithEndTargets();
          
          //  Destroy the object
          Destroy(gameObject);

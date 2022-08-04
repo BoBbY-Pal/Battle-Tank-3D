@@ -11,6 +11,7 @@ public class PlayerTankController
         SetHealthSlider();
         tankView.SetTankController(this);
         Debug.Log("Tank Created", tankView);
+        SubscribeEvents();
     }
 
     public Transform GetPlayerTransform()
@@ -83,6 +84,7 @@ public class PlayerTankController
     public void SetDeathTrue()
     {
         tankModel.isDead = true;
+        UnSubscribeEvents();
     }
     
     public void SetHealthSlider()
@@ -135,14 +137,35 @@ public class PlayerTankController
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void Fire()
     {
         tankModel.isFired = true;
-        BulletService.Instance.SetBulletProperties(tankModel.bulletType, tankView.fireTransform, tankModel.currentLaunchForce);
+        BulletService.Instance.CreateBullet(tankModel.bulletType, tankView.fireTransform, tankModel.currentLaunchForce);
         tankView.shootingAudioSource.clip = tankView.firingClip;
         tankView.shootingAudioSource.Play();
 
         tankModel.currentLaunchForce = tankModel.minLaunchForce;
+    
+        EventHandler.Instance.InvokeBulletFiredEvent(++tankModel.bulletsFired);
     }
 
+    public PlayerTankModel GetModel() =>   tankModel; // Getter for Enemy Tank Model
+
+    private void SubscribeEvents()
+    {
+        EventHandler.Instance.OnEnemyDeath += UpdateEnemiesKilledCount; 
+        EventHandler.Instance.OnBulletFired += AchievementHandler.Instance.BulletsFiredAchievement;
+    }
+
+    private void UnSubscribeEvents()
+    {
+        EventHandler.Instance.OnEnemyDeath -= UpdateEnemiesKilledCount;
+        EventHandler.Instance.OnBulletFired -= AchievementHandler.Instance.BulletsFiredAchievement;
+    }
+
+    private void UpdateEnemiesKilledCount()
+    {
+        AchievementHandler.Instance.EnemyKilledAchievement(++tankModel.enemiesKilled);
+    }
 }

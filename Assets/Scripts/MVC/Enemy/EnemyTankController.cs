@@ -39,7 +39,7 @@ public class EnemyTankController
                                               tankModel.currentHealth / tankModel.maxHealth);
     }
 
-    public void ShowHealthUI()
+    private void ShowHealthUI()
     {
         if (tankView)
         {
@@ -56,6 +56,8 @@ public class EnemyTankController
     public void SetDeathTrue()
     {
         tankModel.b_IsDead = true;
+        
+        EventHandler.Instance.InvokeEnemyDeathEvent();
     }
 
 

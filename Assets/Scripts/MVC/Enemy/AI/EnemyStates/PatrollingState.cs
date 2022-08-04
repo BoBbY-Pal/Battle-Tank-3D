@@ -7,7 +7,6 @@ public class PatrollingState : EnemyStateBase
     protected override void Start()
     {
         base.Start();
-        // ChangeWalkPoint();
         StartCoroutine(ChangeWalkPoint());
     }
 
