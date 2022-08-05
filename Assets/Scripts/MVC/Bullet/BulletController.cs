@@ -1,33 +1,43 @@
-﻿using Interfaces;
+﻿using System.Collections;
+using Interfaces;
 using UnityEngine;
 
 public class BulletController 
 {
-    public BulletModel bulletModel { get; }
-    private BulletView bulletView { get;  }
+    private BulletModel BulletModel { get; }
+    private BulletView BulletView { get;  }
 
-    public BulletController(BulletModel bulletModel, BulletView bulletPrefab, float launchForce,
-        Transform fireTransform)
+    private Rigidbody _rigidbody;
+    public BulletController(BulletModel bulletModel, BulletView bulletPrefab)
     {
-        this.bulletModel = bulletModel;
-        bulletView = Object.Instantiate(bulletPrefab, fireTransform.position, fireTransform.rotation);
-        bulletView.SetBulletController(this);
-        bulletView.GetComponent<Rigidbody>().velocity = fireTransform.forward * launchForce;  // Applying velocity to bullet.
+        
+        BulletModel = bulletModel;
+        BulletView = Object.Instantiate(bulletPrefab, bulletModel.BulletTransform.position, bulletModel.BulletTransform.rotation);
+        BulletView.Initialise(this);
+        
+        // Applying velocity to bullet.
+        _rigidbody = BulletView.GetComponent<Rigidbody>();
+        _rigidbody.velocity = bulletModel.BulletTransform.forward * bulletModel.LaunchForce;
     }
-    
-    public void OnCollisionEnter(Collider other)
+
+    private void SubscribeEvents()
     {
-        ApplyDamageToDamageable();
-        PlayExplosionParticle();
-        PlayExplosionSound();
-        bulletView.DestroyBullet();
+        EventHandler.Instance.BulletCollided += ApplyDamageToDamageable;
+        EventHandler.Instance.BulletCollided += Explode;
+    }
+
+    private void UnSubscribeEvents()
+    {
+        EventHandler.Instance.BulletCollided -= ApplyDamageToDamageable;
+        EventHandler.Instance.BulletCollided -= Explode;
+        
     }
 
 
     private void ApplyDamageToDamageable()
     {
         // find all the tanks in an area around the shell and damage them.
-        Collider[] colliders = Physics.OverlapSphere(bulletView.transform.position, bulletModel.explosionRadius, bulletView.tankMask);
+        Collider[] colliders = Physics.OverlapSphere(BulletView.transform.position, BulletModel.ExplosionRadius, BulletView.tankMask);
 
         foreach (var t in colliders)
         {
@@ -41,33 +51,59 @@ public class BulletController
                 Rigidbody targetRigidbody = t.GetComponent<Rigidbody>();
                 if (targetRigidbody)
                 {
-                    targetRigidbody.AddExplosionForce(bulletModel.explosionForce, bulletView.transform.position, bulletModel.explosionRadius);
+                    targetRigidbody.AddExplosionForce(BulletModel.ExplosionForce, BulletView.transform.position, BulletModel.ExplosionRadius);
                 }
             }
         }
     }
 
-    private float CalculateDamage(Vector3 targetPos)      // Calculates the damage based on the distance of explosion
+    private float CalculateDamage(Vector3 targetPos)   
     {
         
-        float explosionDistance = (targetPos - bulletView.transform.position).magnitude;
-        float relativeDistance = (bulletModel.explosionRadius - explosionDistance) / bulletModel.explosionRadius;
-        float damage = relativeDistance * bulletModel.maxDamage;
+        float explosionDistance = (targetPos - BulletView.transform.position).magnitude;
+        float relativeDistance = (BulletModel.ExplosionRadius - explosionDistance) / BulletModel.ExplosionRadius;
+        float damage = relativeDistance * BulletModel.MaxDamage;
 
         damage = Mathf.Max(0f, damage);
         return damage;
     }
 
-    private void PlayExplosionParticle()
-    {   // Decoupling explosion particle from bullet shell
-        bulletView.explosionParticles.transform.parent = null;
-        
-        bulletView.explosionParticles.Play();
-        bulletView.DestroyParticleSystem(bulletView.explosionParticles);
+    public IEnumerator InvokeExplode()
+    {
+        // If bullet doesn't hit anything then it's will be exploded after it's lifetime.
+        yield return new WaitForSeconds(BulletModel.MaxLifeTime);
+        Explode();
     }
     
-    private void PlayExplosionSound()
+    private void Explode()
     {
-        bulletView.explosionAudio.Play();
+        BulletView.explosionParticle.gameObject.SetActive(true);
+        
+        // Decoupling explosion particle from bullet shell
+        // BulletView.explosionParticle.transform.parent = null;
+        
+        BulletView.explosionParticle.Play();
+        BulletView.explosionAudio.Play();
+        
+        BulletView.DisableParticleObject();
+    }
+
+
+    public void Disable()
+    {
+        BulletView.Disable();
+        UnSubscribeEvents();
+    }
+    public void Enable(Transform bulletTransform, float launchForce)
+    {
+        // Changing bullet position at the recent turret location.
+        var transform = BulletView.transform;
+        transform.position = bulletTransform.position;
+        transform.rotation = bulletTransform.rotation;
+        _rigidbody.velocity = bulletTransform.forward * launchForce;
+        
+        // Enable the object and subscribe to events.
+        BulletView.Enable();
+        SubscribeEvents();
     }
 }

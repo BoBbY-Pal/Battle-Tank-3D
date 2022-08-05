@@ -3,7 +3,7 @@ using Enums;
 using Random = UnityEngine.Random;
 using Scriptable_Objects.EnemySO;
 
-public class EnemyTankService : MonoSingletonGeneric<EnemyTankService>
+public class EnemyTankService : MonoGenericSingleton<EnemyTankService>
 {
     public EnemyTankView tankView;
     public EnemySOList enemyTankList;

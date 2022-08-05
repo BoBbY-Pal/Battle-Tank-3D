@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
 public class PlayerTankController 
 {
     private PlayerTankModel tankModel { get; }
@@ -147,25 +148,30 @@ public class PlayerTankController
 
         tankModel.currentLaunchForce = tankModel.minLaunchForce;
     
-        EventHandler.Instance.InvokeBulletFiredEvent(++tankModel.bulletsFired);
+        EventHandler.Instance.InvokeBulletFiredEvent();
     }
-
-    public PlayerTankModel GetModel() =>   tankModel; // Getter for Enemy Tank Model
 
     private void SubscribeEvents()
     {
         EventHandler.Instance.OnEnemyDeath += UpdateEnemiesKilledCount; 
-        EventHandler.Instance.OnBulletFired += AchievementHandler.Instance.BulletsFiredAchievement;
+        EventHandler.Instance.OnBulletFired += UpdateBulletFiresCount;
     }
 
     private void UnSubscribeEvents()
     {
         EventHandler.Instance.OnEnemyDeath -= UpdateEnemiesKilledCount;
-        EventHandler.Instance.OnBulletFired -= AchievementHandler.Instance.BulletsFiredAchievement;
+        EventHandler.Instance.OnBulletFired -= UpdateBulletFiresCount;
     }
 
+    private void UpdateBulletFiresCount()
+    {
+        UIManager.Instance.UpdateFireCount(++tankModel.bulletsFired);
+        AchievementHandler.Instance.BulletsFiredAchievement(++tankModel.bulletsFired);
+    }
+    
     private void UpdateEnemiesKilledCount()
     {
+        UIManager.Instance.UpdateKills(++tankModel.enemiesKilled);
         AchievementHandler.Instance.EnemyKilledAchievement(++tankModel.enemiesKilled);
     }
 }

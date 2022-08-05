@@ -99,6 +99,10 @@ public class EnemyTankView : MonoBehaviour, IDamageable
         explosionParticles.Play();
         explosionAudio.Play();
         
+        float waitTime = Mathf.Max(explosionParticles.main.duration,
+            explosionAudio.clip.length);
+        Destroy(explosionParticles, waitTime);
+        
         CameraController.Instance.RemoveTargetPosition(this.transform);  
         
         Destroy(gameObject);

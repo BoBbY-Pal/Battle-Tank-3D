@@ -1,4 +1,3 @@
-using System;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +23,7 @@ using UnityEngine.UI;
      public AudioClip chargingClip, firingClip;
 
      [HideInInspector] public float originalPitch;     // The pitch of the audio source at the start of the scene.
-     [HideInInspector] public AudioSource explosionSound;
+     [HideInInspector] public AudioSource explosionAudio;
      [HideInInspector] public ParticleSystem explosionParticles;
      [HideInInspector] public Rigidbody tank_rb;             // Rigidbody reference
      [HideInInspector] public Joystick rightJoystick, leftJoystick;
@@ -103,14 +102,18 @@ using UnityEngine.UI;
          
          // Spawning the explosion particles when player dying at the position of tank
          explosionParticles = Instantiate(explosionEffectPrefab.GetComponent<ParticleSystem>());
-         explosionSound = explosionParticles.GetComponent<AudioSource>();
+         explosionAudio = explosionParticles.GetComponent<AudioSource>();
          explosionParticles.gameObject.SetActive(false);
          explosionParticles.transform.position = transform.position;
          
          // Playing the effects on the death of the tank and destroying it.
          explosionParticles.gameObject.SetActive((true));
          explosionParticles.Play();
-         explosionSound.Play(); 
+         explosionAudio.Play(); 
+         
+         float waitTime = Mathf.Max(explosionParticles.main.duration,
+                                    explosionAudio.clip.length);
+         Destroy(explosionParticles, waitTime);
          
          // Adjusting camera 
          CameraController.Instance.RemoveTargetPosition(this.transform);

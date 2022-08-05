@@ -1,18 +1,24 @@
 ﻿using System;
 
-public class EventHandler : MonoSingletonGeneric<EventHandler>
+public class EventHandler : MonoGenericSingleton<EventHandler>
 {
-    public event Action<int> OnBulletFired;
+    public event Action OnBulletFired;
     public event Action OnEnemyDeath;
+    public event Action BulletCollided;
 
-    public void InvokeBulletFiredEvent(int bulletCount)
+    public void InvokeBulletFiredEvent()
     {
-        OnBulletFired?.Invoke(bulletCount);
+        OnBulletFired?.Invoke();
     }
 
     public void InvokeEnemyDeathEvent()
     {
         OnEnemyDeath?.Invoke();
+    }
+
+    public void InvokeBulletCollidedEvent()
+    {
+        BulletCollided?.Invoke();
     }
 
 }

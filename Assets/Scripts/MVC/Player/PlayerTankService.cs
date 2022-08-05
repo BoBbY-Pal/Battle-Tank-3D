@@ -1,7 +1,7 @@
 using Scriptable_Objects.PlayerSO;
 using UnityEngine;
 
-public class PlayerTankService : MonoSingletonGeneric<PlayerTankService>
+public class PlayerTankService : MonoGenericSingleton<PlayerTankService>
 {
     public PlayerTankView tankViewPrefab;
     public TankScriptableObjectList playerTankList;

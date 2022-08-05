@@ -8,7 +8,7 @@ namespace Scriptable_Objects.BulletSO
      {
           [Header("Prefab")] 
           public BulletView bulletView;
-     
+
           [Header("Bullet Type")]
           public BulletType bulletType;
 
