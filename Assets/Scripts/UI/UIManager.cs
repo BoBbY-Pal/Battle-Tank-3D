@@ -14,7 +14,7 @@ namespace UI
 
         public void UpdateFireCount(int bulletCount)
         {
-            bulletCountTxt.text = "Fires: " + bulletCount;
+            bulletCountTxt.text = "Bullet Fires: " + bulletCount;
         }
         
         public void UpdateKills(int killCount)

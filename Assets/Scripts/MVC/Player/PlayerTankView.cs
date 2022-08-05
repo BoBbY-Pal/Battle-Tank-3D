@@ -23,8 +23,7 @@ using UnityEngine.UI;
      public AudioClip chargingClip, firingClip;
 
      [HideInInspector] public float originalPitch;     // The pitch of the audio source at the start of the scene.
-     [HideInInspector] public AudioSource explosionAudio;
-     [HideInInspector] public ParticleSystem explosionParticles;
+     
      [HideInInspector] public Rigidbody tank_rb;             // Rigidbody reference
      [HideInInspector] public Joystick rightJoystick, leftJoystick;
 
@@ -99,28 +98,29 @@ using UnityEngine.UI;
      public void PlayerDied()
      {
          _tankController.SetDeathTrue();
-         
-         // Spawning the explosion particles when player dying at the position of tank
-         explosionParticles = Instantiate(explosionEffectPrefab.GetComponent<ParticleSystem>());
-         explosionAudio = explosionParticles.GetComponent<AudioSource>();
-         explosionParticles.gameObject.SetActive(false);
-         explosionParticles.transform.position = transform.position;
-         
-         // Playing the effects on the death of the tank and destroying it.
-         explosionParticles.gameObject.SetActive((true));
+     
+         // Spawning the explosion particles when player dying at the position of tank.
+         ParticleSystem explosionParticles = Instantiate(explosionEffectPrefab.GetComponent<ParticleSystem>());
+         AudioSource explosionAudio = explosionParticles.GetComponent<AudioSource>();
+         explosionParticles.gameObject.transform.position = transform.position;
+
+         // Playing the effects on the death of the player and destroying the tank.
          explosionParticles.Play();
          explosionAudio.Play(); 
          
+         //  Destroy the tank object.
+         Destroy(gameObject);
+         
+         // When particle effect finishes or audio clip ends destroy the particle object.
          float waitTime = Mathf.Max(explosionParticles.main.duration,
                                     explosionAudio.clip.length);
-         Destroy(explosionParticles, waitTime);
+         Destroy(explosionParticles.gameObject, waitTime);
          
          // Adjusting camera 
          CameraController.Instance.RemoveTargetPosition(this.transform);
          CameraController.Instance.SetCameraWithEndTargets();
          
-         //  Destroy the object
-         Destroy(gameObject);
+        
      }
 
      public void TakeDamage(float damage)

@@ -27,15 +27,6 @@ public class EnemyTankView : MonoBehaviour, IDamageable
     [HideInInspector] public EnemyStateBase currentEnemyState;
 
     [HideInInspector] public Transform playerTransform;
-    [HideInInspector] public ParticleSystem explosionParticles;
-    [HideInInspector] public AudioSource explosionAudio;
-
-    private void Awake()
-    {
-        explosionParticles = Instantiate(explosionPrefab.GetComponent<ParticleSystem>());
-        explosionAudio = explosionParticles.GetComponent<AudioSource>();
-        explosionParticles.gameObject.SetActive(false);
-    }
 
     private void Start()
     {
@@ -94,18 +85,24 @@ public class EnemyTankView : MonoBehaviour, IDamageable
     public void Death()
     {
         _tankController.SetDeathTrue();
+        
+        // Spawning the explosion particles at the position of enemy when dies.
+        ParticleSystem explosionParticles = Instantiate(explosionPrefab.GetComponent<ParticleSystem>());
+        AudioSource explosionAudio = explosionParticles.GetComponent<AudioSource>();
         explosionParticles.transform.position = transform.position;
-        explosionParticles.gameObject.SetActive(true);
+        
+        // Playing the effects on the death of the enemy and destroying tank.
         explosionParticles.Play();
         explosionAudio.Play();
         
-        float waitTime = Mathf.Max(explosionParticles.main.duration,
-            explosionAudio.clip.length);
-        Destroy(explosionParticles, waitTime);
-        
-        CameraController.Instance.RemoveTargetPosition(this.transform);  
-        
+        //  Destroy the tank object.
         Destroy(gameObject);
+        
+        float waitTime = Mathf.Max(explosionParticles.main.duration,
+                                    explosionAudio.clip.length);
+        Destroy(explosionParticles.gameObject, waitTime);
+        
+        CameraController.Instance.RemoveTargetPosition(this.transform);
     }
     
     private void SetEnemyTankMaterial()
