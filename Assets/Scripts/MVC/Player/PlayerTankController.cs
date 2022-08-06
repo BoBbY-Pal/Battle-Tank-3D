@@ -1,4 +1,5 @@
-﻿using UI;
+﻿using Enums;
+using UI;
 using UnityEngine;
 public class PlayerTankController 
 {
@@ -120,8 +121,7 @@ public class PlayerTankController
             TankModel.CurrentLaunchForce = TankModel.MinLaunchForce;
             
             // ... Change the clip to the charging clip and start it playing.
-            TankView.shootingAudioSource.clip = TankView.chargingClip;
-            TankView.shootingAudioSource.Play();
+            SFXManager.Instance.Play(SoundTypes.ShotCharging);
         }
         // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
         else if (Input.GetMouseButton(0) && !TankModel.IsFired)     
@@ -143,8 +143,8 @@ public class PlayerTankController
     {
         TankModel.IsFired = true;
         BulletService.Instance.CreateBullet(TankModel.BulletType, TankView.fireTransform, TankModel.CurrentLaunchForce);
-        TankView.shootingAudioSource.clip = TankView.firingClip;
-        TankView.shootingAudioSource.Play();
+        
+        SFXManager.Instance.Play(SoundTypes.Firing);
 
         TankModel.CurrentLaunchForce = TankModel.MinLaunchForce;
     

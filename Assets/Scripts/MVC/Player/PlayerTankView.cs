@@ -19,9 +19,6 @@ using UnityEngine.UI;
      public AudioSource movementAudioSource;
      public AudioClip engineIdling, engineDriving;
 
-     public AudioSource shootingAudioSource;
-     public AudioClip chargingClip, firingClip;
-
      [HideInInspector] public float originalPitch;     // The pitch of the audio source at the start of the scene.
      
      [HideInInspector] public Rigidbody tank_rb;             // Rigidbody reference

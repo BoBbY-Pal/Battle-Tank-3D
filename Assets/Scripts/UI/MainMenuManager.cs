@@ -1,14 +1,11 @@
-using System;
 using Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 
 public class MainMenuManager : MonoBehaviour
 {
     private void Start()
     {
-        
         SFXManager.Instance.PlayMusic(SoundTypes.BackgroundMusic);
     }
 
@@ -23,6 +20,4 @@ public class MainMenuManager : MonoBehaviour
         SFXManager.Instance.Play(SoundTypes.ButtonClick);
         Application.Quit();
     }
-    
-    
 }

@@ -4,6 +4,8 @@
     {
         BackgroundMusic,
         RoundOver,
-        ButtonClick
+        ButtonClick,
+        Firing,
+        ShotCharging
     }
 }

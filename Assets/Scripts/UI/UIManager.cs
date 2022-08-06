@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using Enums;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -13,12 +14,39 @@ namespace UI
         public TextMeshProUGUI bulletCountTxt;
         public TextMeshProUGUI enemiesKilledTxt;
 
+        public GameObject pausePanel;
         private void Start()
         {
             bulletCountTxt.text = "Bullet Fires: 0";
             enemiesKilledTxt.text = "Kills: 0";
         }
 
+        public void Pause()
+        {
+            SFXManager.Instance.Play(SoundTypes.ButtonClick);
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+        
+        public void Resume()
+        {
+            SFXManager.Instance.Play(SoundTypes.ButtonClick);
+            pausePanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+        public void Restart()
+        {
+            SFXManager.Instance.Play(SoundTypes.ButtonClick);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Time.timeScale = 1;
+        }
+        
+        public void Quit()
+        {
+            SFXManager.Instance.Play(SoundTypes.ButtonClick);
+            Application.Quit();
+        }
+        
         public void UpdateFireCount(int bulletCount)
         {
             bulletCountTxt.text = "Bullet Fires: " + bulletCount;
