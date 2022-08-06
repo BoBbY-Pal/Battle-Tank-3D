@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,12 @@ namespace UI
         [SerializeField] private TextMeshProUGUI achievementInfo;
         public TextMeshProUGUI bulletCountTxt;
         public TextMeshProUGUI enemiesKilledTxt;
+
+        private void Start()
+        {
+            bulletCountTxt.text = "Bullet Fires: 0";
+            enemiesKilledTxt.text = "Kills: 0";
+        }
 
         public void UpdateFireCount(int bulletCount)
         {

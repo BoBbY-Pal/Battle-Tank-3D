@@ -5,6 +5,7 @@ public class EventHandler : MonoGenericSingleton<EventHandler>
     public event Action OnBulletFired;
     public event Action OnEnemyDeath;
     public event Action BulletCollided;
+    
 
     public void InvokeBulletFiredEvent()
     {
@@ -20,5 +21,6 @@ public class EventHandler : MonoGenericSingleton<EventHandler>
     {
         BulletCollided?.Invoke();
     }
+    
 
 }
