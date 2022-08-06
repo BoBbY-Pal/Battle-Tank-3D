@@ -3,49 +3,48 @@ using UnityEngine;
 
 public class PlayerTankModel 
 {
-    public int speed { get; }       // Movement speed
-    public float currentHealth { get; set; }  
-    public int maxHealth { get; }
-    public int rotationRate { get; }  // Turning speed
-    public int turretRotationRate { get;}
+    public int Speed { get; }       // Movement speed
+    public float CurrentHealth { get; set; }  
+    public int MaxHealth { get; }
+    public int RotationRate { get; }  // Turning speed
+    public int TurretRotationRate { get;}
     public float pitchRange = 0.2f;     // For transition between sound so that it can be heard smoothly.
-    public BulletType bulletType { get; }  
+    public BulletType BulletType { get; }  
     
     // Bullet
-    public float chargeSpeed { get; }
-    public float maxChargeTime { get; }
-    public float minLaunchForce { get; }
-    public float currentLaunchForce { get; set; }
-    public float maxLaunchForce { get; }
+    public float ChargeSpeed { get; }
+    public float MaxChargeTime { get; }
+    public float MinLaunchForce { get; }
+    public float CurrentLaunchForce { get; set; }
+    public float MaxLaunchForce { get; }
     
     // Health UI
-    public Color fullHealthColor {get;}
-    public Color zeroHealthColor {get;}
+    public Color FullHealthColor {get;}
+    public Color ZeroHealthColor {get;}
     
-    public bool isDead { get; set; }
-    public bool isFired { get; set; }
-    public int bulletsFired { get; set; }
-    public int enemiesKilled { get; set; }
+    public bool IsDead { get; set; }
+    public bool IsFired { get; set; }
+    public int BulletsFired { get; set; }
+    public int EnemiesKilled { get; set; }
 
     public PlayerTankModel (int speed, int currentHealth, int rotationRate, int turretRotationRate, 
                             float maxLaunchForce, float minLaunchForce, float maxChargeTime, BulletType bulletType)
     {
-        isDead = false;
-        isFired = false;
-        maxHealth = currentHealth;
-        this.currentHealth = currentHealth;
-        this.rotationRate = rotationRate;
-        this.turretRotationRate = turretRotationRate;
-        currentLaunchForce = minLaunchForce;
-        this.maxLaunchForce = maxLaunchForce;
-        this.minLaunchForce = minLaunchForce;
-        this.maxChargeTime = maxChargeTime;
-        chargeSpeed = (maxLaunchForce - minLaunchForce) / maxChargeTime;
-        this.bulletType = bulletType;
-        this.speed = speed;
-        
-        fullHealthColor = Color.green;
-        zeroHealthColor = Color.red;
+        IsDead = false;
+        IsFired = false;
+        MaxHealth = currentHealth;
+        CurrentHealth = currentHealth;
+        RotationRate = rotationRate;
+        TurretRotationRate = turretRotationRate;
+        CurrentLaunchForce = minLaunchForce;
+        MaxLaunchForce = maxLaunchForce;
+        MinLaunchForce = minLaunchForce;
+        MaxChargeTime = maxChargeTime;
+        ChargeSpeed = (maxLaunchForce - minLaunchForce) / maxChargeTime;
+        BulletType = bulletType;
+        Speed = speed;
+        FullHealthColor = Color.green;
+        ZeroHealthColor = Color.red;
     }
 }
 

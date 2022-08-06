@@ -584,12 +584,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 780783004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 190.19124, y: 820.5703, z: -0.4638499}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 2051028434}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &797909606 stripped
 RectTransform:
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bullet Count: 0'
+  m_text: 'Bullet Fires: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -895,6 +895,54 @@ RectTransform:
   m_AnchoredPosition: {x: -711, y: 481}
   m_SizeDelta: {x: 347.9282, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1070589933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070589934}
+  - component: {fileID: 1070589935}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1070589934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070589933}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2051028434}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070589935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070589933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a134643e12a42d5af971dea76221123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievementPanel: {fileID: 1267889305}
+  achievementName: {fileID: 1271177468}
+  achievementInfo: {fileID: 980901072}
+  bulletCountTxt: {fileID: 996759035}
+  enemiesKilledTxt: {fileID: 1572644268}
 --- !u!1001 &1158996493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1807,7 +1855,7 @@ GameObject:
   - component: {fileID: 1572644269}
   - component: {fileID: 1572644268}
   m_Layer: 5
-  m_Name: Enemt Death Count
+  m_Name: Kills Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1833,7 +1881,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Killed Enemy: 0
+  m_text: 'Kills: 0
 
 '
   m_isRightToLeft: 0
@@ -1992,6 +2040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1924570525}
   - component: {fileID: 1924570526}
+  - component: {fileID: 1924570527}
   m_Layer: 0
   m_Name: Bullet Manager
   m_TagString: Untagged
@@ -2025,7 +2074,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03be5708e79c481e909eafb20395d496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletList: {fileID: 11400000, guid: 2193ddb257de4854bbd9466c5fdb4671, type: 2}
+  bulletView: {fileID: 7947392365596030608, guid: b894b97fbbf5e0842bcb28d74cc5067a,
+    type: 3}
+  bulletExplosionEffect: {fileID: 19807510, guid: 89e78efe92dfe5a42837b392cdb0bf9e,
+    type: 3}
+  bulletsList: {fileID: 11400000, guid: 2193ddb257de4854bbd9466c5fdb4671, type: 2}
+--- !u!114 &1924570527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924570524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c600e1444f554306b81c955a79fc7005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1972238393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2201,11 +2266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   achievementSoList: {fileID: 11400000, guid: c79f0a4a30e9d2045a7561cecb9b3745, type: 2}
-  achievementPanel: {fileID: 1267889305}
-  achievementName: {fileID: 1271177468}
-  achievementInfo: {fileID: 980901072}
-  bulletCountTxt: {fileID: 996759035}
-  enemyKilledTxt: {fileID: 1572644268}
 --- !u!4 &2043081068
 Transform:
   m_ObjectHideFlags: 0
@@ -2213,12 +2273,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043081066}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 2051028434}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2051028432
 GameObject:
@@ -2250,6 +2310,9 @@ Transform:
   - {fileID: 65791264}
   - {fileID: 1321035434}
   - {fileID: 1924570525}
+  - {fileID: 1070589934}
+  - {fileID: 2043081068}
+  - {fileID: 780783006}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

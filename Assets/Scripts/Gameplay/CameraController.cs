@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.PlayerLoop;
 
-public class CameraController : MonoSingletonGeneric<CameraController>
+public class CameraController : MonoGenericSingleton<CameraController>
 {
     private List<Transform> targets = new List<Transform>();
     [SerializeField] private Transform[] endTargets = new Transform[2];

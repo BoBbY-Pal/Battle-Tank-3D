@@ -1,45 +1,46 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
 public class PlayerTankController 
 {
-    private PlayerTankModel tankModel { get; }
-    private PlayerTankView tankView { get; }
+    private PlayerTankModel TankModel { get; }
+    private PlayerTankView TankView { get; }
 
     public PlayerTankController(PlayerTankModel tankModel, PlayerTankView tankPrefab)
     {
-        this.tankModel = tankModel;
-        tankView = Object.Instantiate(tankPrefab);
+        this.TankModel = tankModel;
+        TankView = Object.Instantiate(tankPrefab);
         SetHealthSlider();
-        tankView.SetTankController(this);
-        Debug.Log("Tank Created", tankView);
+        TankView.SetTankController(this);
+        Debug.Log("Tank Created", TankView);
         SubscribeEvents();
     }
 
     public Transform GetPlayerTransform()
     {
-        return tankView.transform;
+        return TankView.transform;
     }
     public void EngineAudio()
     {
         // If there is no input (Tank Idle State)
-        if(Mathf.Abs(tankView.leftJoystick.Vertical) < 0.1f && Mathf.Abs(tankView.leftJoystick.Horizontal) < 0.1f) 
+        if(Mathf.Abs(TankView.leftJoystick.Vertical) < 0.1f && Mathf.Abs(TankView.leftJoystick.Horizontal) < 0.1f) 
         {
             // And if Driving audio is playing
-            if(tankView.movementAudioSource.clip == tankView.engineDriving) 
+            if(TankView.movementAudioSource.clip == TankView.engineDriving) 
             {   // Change the clip to Idle and play it
-                tankView.movementAudioSource.clip = tankView.engineIdling;
-                tankView.movementAudioSource.pitch = Random.Range(tankView.originalPitch - tankModel.pitchRange,
-                                                                  tankView.originalPitch + tankModel.pitchRange);
-                tankView.movementAudioSource.Play();
+                TankView.movementAudioSource.clip = TankView.engineIdling;
+                TankView.movementAudioSource.pitch = Random.Range(TankView.originalPitch - TankModel.pitchRange,
+                                                                  TankView.originalPitch + TankModel.pitchRange);
+                TankView.movementAudioSource.Play();
             }
         }
         else
         {
             // If tank is moving and idling clip is currently plating
-            if(tankView.movementAudioSource.clip == tankView.engineIdling)
+            if(TankView.movementAudioSource.clip == TankView.engineIdling)
             {
-                tankView.movementAudioSource.clip = tankView.engineDriving;
-                tankView.movementAudioSource.pitch = Random.Range(tankView.originalPitch - tankModel.pitchRange, tankView.originalPitch + tankModel.pitchRange);
-                tankView.movementAudioSource.Play();
+                TankView.movementAudioSource.clip = TankView.engineDriving;
+                TankView.movementAudioSource.pitch = Random.Range(TankView.originalPitch - TankModel.pitchRange, TankView.originalPitch + TankModel.pitchRange);
+                TankView.movementAudioSource.Play();
             }
         }
     }
@@ -47,90 +48,90 @@ public class PlayerTankController
     public void MovePlayerTank()
     {
         // rb.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
-        Vector3 movement = tankView.transform.forward * (tankView.leftJoystick.Vertical * tankModel.speed * Time.deltaTime);
+        Vector3 movement = TankView.transform.forward * (TankView.leftJoystick.Vertical * TankModel.Speed * Time.deltaTime);
         // Applying movement on rigidbody
-        tankView.tank_rb.MovePosition( tankView.tank_rb.position + movement);
+        TankView.tank_rb.MovePosition( TankView.tank_rb.position + movement);
     }
 
     public void TurnPlayerTank()
     {
         // Number of degrees to be turned 
-        float turn = tankView.leftJoystick.Horizontal * tankModel.rotationRate * Time.deltaTime;
+        float turn = TankView.leftJoystick.Horizontal * TankModel.RotationRate * Time.deltaTime;
       
         // Make this into a Rotation
         Quaternion turnRotation = Quaternion.Euler(0f,turn,0f);
        
         // Applying rotation to the rigidbody
-        tankView.tank_rb.MoveRotation(tankView.tank_rb.rotation * turnRotation);
+        TankView.tank_rb.MoveRotation(TankView.tank_rb.rotation * turnRotation);
     }
 
     public void RotatePlayerTankTurret()
     {
-        Vector3 desiredRotation = Vector3.up * (tankView.rightJoystick.Horizontal * tankModel.turretRotationRate * Time.deltaTime);
-        tankView.turret.transform.Rotate(desiredRotation, Space.Self);
+        Vector3 desiredRotation = Vector3.up * (TankView.rightJoystick.Horizontal * TankModel.TurretRotationRate * Time.deltaTime);
+        TankView.turret.transform.Rotate(desiredRotation, Space.Self);
     }
 
     public void TakeDamage(float damage)
     {
-        tankModel.currentHealth -= damage;
+        TankModel.CurrentHealth -= damage;
         SetHealthSlider();  // Update the health bar
-        if (tankModel.currentHealth - damage <= 0 && !tankModel.isDead)
+        if (TankModel.CurrentHealth - damage <= 0 && !TankModel.IsDead)
         {   
-            tankModel.isDead = true;
-            tankView.PlayerDied();
+            TankModel.IsDead = true;
+            TankView.PlayerDied();
         }
     }
 
     public void SetDeathTrue()
     {
-        tankModel.isDead = true;
+        TankModel.IsDead = true;
         UnSubscribeEvents();
     }
     
     public void SetHealthSlider()
     {   
         // Set the value and color of the health slider.
-        tankView.healthSlider.value = tankModel.currentHealth;
-        tankView.fillImage.color = Color.Lerp(tankModel.zeroHealthColor, tankModel.fullHealthColor,
-            tankModel.currentHealth / tankModel.maxHealth);
+        TankView.healthSlider.value = TankModel.CurrentHealth;
+        TankView.fillImage.color = Color.Lerp(TankModel.ZeroHealthColor, TankModel.FullHealthColor,
+            TankModel.CurrentHealth / TankModel.MaxHealth);
     }
 
     public void SetAimSlider()
     {
-        tankView.aimSlider.value = tankModel.currentLaunchForce;
+        TankView.aimSlider.value = TankModel.CurrentLaunchForce;
     }
 
     public void FireInputCheck()
     {
-        tankView.aimSlider.value = tankModel.minLaunchForce;
+        TankView.aimSlider.value = TankModel.MinLaunchForce;
         
         // If the max force has been exceeded and the shell hasn't yet been launched...
-        if (tankModel.currentLaunchForce >= tankModel.maxLaunchForce && !tankModel.isFired)
+        if (TankModel.CurrentLaunchForce >= TankModel.MaxLaunchForce && !TankModel.IsFired)
         {   
             // ... use the max force and launch the bullet shell.
-            tankModel.currentLaunchForce = tankModel.maxLaunchForce;
+            TankModel.CurrentLaunchForce = TankModel.MaxLaunchForce;
             Fire();
         }
         // Otherwise, if the fire button has just started being pressed...
         else if (Input.GetMouseButtonDown(0))   // If pressed fire button for the first time
         {
             // ... reset the fired flag and reset the launch force.
-            tankModel.isFired = false;
-            tankModel.currentLaunchForce = tankModel.minLaunchForce;
+            TankModel.IsFired = false;
+            TankModel.CurrentLaunchForce = TankModel.MinLaunchForce;
             
             // ... Change the clip to the charging clip and start it playing.
-            tankView.shootingAudioSource.clip = tankView.chargingClip;
-            tankView.shootingAudioSource.Play();
+            TankView.shootingAudioSource.clip = TankView.chargingClip;
+            TankView.shootingAudioSource.Play();
         }
         // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
-        else if (Input.GetMouseButton(0) && !tankModel.isFired)     
+        else if (Input.GetMouseButton(0) && !TankModel.IsFired)     
         {
             // ... Increment the launch force and update the slider.
-            tankModel.currentLaunchForce += tankModel.chargeSpeed * Time.deltaTime;
-            tankView.aimSlider.value = tankModel.currentLaunchForce;
+            TankModel.CurrentLaunchForce += TankModel.ChargeSpeed * Time.deltaTime;
+            TankView.aimSlider.value = TankModel.CurrentLaunchForce;
         }
         // Otherwise, if the fire button is released and the shell hasn't been launched yet...
-        else if (Input.GetMouseButtonUp(0) && !tankModel.isFired)
+        else if (Input.GetMouseButtonUp(0) && !TankModel.IsFired)
         {   
             // ... Launch the shell
             Fire();     
@@ -140,32 +141,37 @@ public class PlayerTankController
     // ReSharper disable Unity.PerformanceAnalysis
     private void Fire()
     {
-        tankModel.isFired = true;
-        BulletService.Instance.CreateBullet(tankModel.bulletType, tankView.fireTransform, tankModel.currentLaunchForce);
-        tankView.shootingAudioSource.clip = tankView.firingClip;
-        tankView.shootingAudioSource.Play();
+        TankModel.IsFired = true;
+        BulletService.Instance.CreateBullet(TankModel.BulletType, TankView.fireTransform, TankModel.CurrentLaunchForce);
+        TankView.shootingAudioSource.clip = TankView.firingClip;
+        TankView.shootingAudioSource.Play();
 
-        tankModel.currentLaunchForce = tankModel.minLaunchForce;
+        TankModel.CurrentLaunchForce = TankModel.MinLaunchForce;
     
-        EventHandler.Instance.InvokeBulletFiredEvent(++tankModel.bulletsFired);
+        EventHandler.Instance.InvokeBulletFiredEvent();
     }
-
-    public PlayerTankModel GetModel() =>   tankModel; // Getter for Enemy Tank Model
 
     private void SubscribeEvents()
     {
         EventHandler.Instance.OnEnemyDeath += UpdateEnemiesKilledCount; 
-        EventHandler.Instance.OnBulletFired += AchievementHandler.Instance.BulletsFiredAchievement;
+        EventHandler.Instance.OnBulletFired += UpdateBulletFiresCount;
     }
 
     private void UnSubscribeEvents()
     {
         EventHandler.Instance.OnEnemyDeath -= UpdateEnemiesKilledCount;
-        EventHandler.Instance.OnBulletFired -= AchievementHandler.Instance.BulletsFiredAchievement;
+        EventHandler.Instance.OnBulletFired -= UpdateBulletFiresCount;
     }
 
+    private void UpdateBulletFiresCount()
+    {
+        UIManager.Instance.UpdateFireCount(++TankModel.BulletsFired);
+        AchievementHandler.Instance.BulletsFiredAchievement(++TankModel.BulletsFired);
+    }
+    
     private void UpdateEnemiesKilledCount()
     {
-        AchievementHandler.Instance.EnemyKilledAchievement(++tankModel.enemiesKilled);
+        UIManager.Instance.UpdateKills(++TankModel.EnemiesKilled);
+        AchievementHandler.Instance.EnemyKilledAchievement(++TankModel.EnemiesKilled);
     }
 }
