@@ -220,7 +220,6 @@ GameObject:
   m_Component:
   - component: {fileID: 664551905}
   - component: {fileID: 664551904}
-  - component: {fileID: 664551903}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -228,14 +227,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &664551903
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664551902}
-  m_Enabled: 1
 --- !u!20 &664551904
 Camera:
   m_ObjectHideFlags: 0
@@ -405,6 +396,7 @@ GameObject:
   - component: {fileID: 875961446}
   - component: {fileID: 875961445}
   - component: {fileID: 875961448}
+  - component: {fileID: 875961449}
   m_Layer: 0
   m_Name: SFX Manager
   m_TagString: Untagged
@@ -531,6 +523,14 @@ MonoBehaviour:
     soundClip: {fileID: 8300000, guid: 8ce5d020a687c314891341b4126d1de2, type: 3}
     b_IsMute: 0
     volume: 0.5
+  - soundType: 3
+    soundClip: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}
+    b_IsMute: 0
+    volume: 0.5
+  - soundType: 4
+    soundClip: {fileID: 8300000, guid: c17f124fcdc0f5446a72f793898bd74b, type: 3}
+    b_IsMute: 0
+    volume: 0.5
 --- !u!4 &875961447
 Transform:
   m_ObjectHideFlags: 0
@@ -641,6 +641,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &875961449
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875961444}
+  m_Enabled: 1
 --- !u!1 &1002307846
 GameObject:
   m_ObjectHideFlags: 0

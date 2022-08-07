@@ -27,7 +27,11 @@ namespace UI
             pausePanel.SetActive(true);
             Time.timeScale = 0;
         }
-        
+        public void ReturnToMainMenu()
+        {
+            SFXManager.Instance.Play(SoundTypes.ButtonClick);
+            SceneManager.LoadScene(0);
+        }
         public void Resume()
         {
             SFXManager.Instance.Play(SoundTypes.ButtonClick);

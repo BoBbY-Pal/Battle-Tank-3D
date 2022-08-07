@@ -1,13 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.PlayerLoop;
+
 
 public class CameraController : MonoGenericSingleton<CameraController>
 {
+    // Active transforms that will be displayed in the camera frame.
     private List<Transform> targets = new List<Transform>();
+    
     [SerializeField] private Transform[] endTargets = new Transform[2];
     [SerializeField] private float dampTime = 0.2f;
     [SerializeField] private float screenEdgeBuffer = 4f;
@@ -42,6 +41,13 @@ public class CameraController : MonoGenericSingleton<CameraController>
     {
         Vector3 averagePos = new Vector3();
         int numOfTargets = 0;
+
+        if (targets.Count == 0)
+        {
+            SetCameraWithEndTargets();
+            return;
+            
+        }
         for (int i = 0; i < targets.Count; i++)
         {
             if(!targets[i].gameObject.activeSelf) 
