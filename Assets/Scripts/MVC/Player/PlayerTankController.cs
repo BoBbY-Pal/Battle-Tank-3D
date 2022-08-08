@@ -3,6 +3,7 @@ using UI;
 using UnityEngine;
 public class PlayerTankController 
 {
+    private bool b_IsFireButtonPressed;
     private PlayerTankModel TankModel { get; }
     private PlayerTankView TankView { get; }
 
@@ -106,46 +107,55 @@ public class PlayerTankController
     {
         TankView.aimSlider.value = TankModel.MinLaunchForce;
         
-        // If the max force has been exceeded and the shell hasn't yet been launched...
-        if (TankModel.CurrentLaunchForce >= TankModel.MaxLaunchForce && !TankModel.IsFired)
+        // If the max force has been exceeded and the bullet hasn't yet been launched...
+        if (TankModel.CurrentLaunchForce >= TankModel.MaxLaunchForce && !TankModel.b_IsFired)
         {   
             // ... use the max force and launch the bullet shell.
             TankModel.CurrentLaunchForce = TankModel.MaxLaunchForce;
             Fire();
         }
-        // Otherwise, if the fire button has just started being pressed...
-        else if (Input.GetMouseButtonDown(0))   // If pressed fire button for the first time
-        {
-            // ... reset the fired flag and reset the launch force.
-            TankModel.IsFired = false;
-            TankModel.CurrentLaunchForce = TankModel.MinLaunchForce;
-            
-            // ... Change the clip to the charging clip and start it playing.
-            SFXManager.Instance.Play(SoundTypes.ShotCharging);
-        }
-        // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
-        else if (Input.GetMouseButton(0) && !TankModel.IsFired)     
+     
+        // Otherwise, if the fire button is being held and the bullet hasn't been launched yet...
+        else if (b_IsFireButtonPressed && !TankModel.b_IsFired)     
         {
             // ... Increment the launch force and update the slider.
             TankModel.CurrentLaunchForce += TankModel.ChargeSpeed * Time.deltaTime;
             TankView.aimSlider.value = TankModel.CurrentLaunchForce;
         }
-        // Otherwise, if the fire button is released and the shell hasn't been launched yet...
-        else if (Input.GetMouseButtonUp(0) && !TankModel.IsFired)
-        {   
-            // ... Launch the shell
-            Fire();     
-        }
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
+    // if the fire button is released and the bullet hasn't been launched yet...
+    private void FireButtonReleased()
+    {
+        b_IsFireButtonPressed = false;
+        
+        if(!TankModel.b_IsFired)
+        {
+            // ... Launch the shell
+            Fire();
+        }
+    }
+    
+    // if the fire button has just started being pressed...
+    private void FireButtonPressed()
+    {
+        // ... reset the fired flag and reset the launch force.
+        TankModel.b_IsFired = false;
+        TankModel.CurrentLaunchForce = TankModel.MinLaunchForce;
+            
+        // ... Change the clip to the charging clip and start it playing.
+        SFXManager.Instance.Play(SoundTypes.ShotCharging);
+        
+        b_IsFireButtonPressed = true;
+    }
     private void Fire()
     {
-        TankModel.IsFired = true;
+        TankModel.b_IsFired = true;
         BulletService.Instance.CreateBullet(TankModel.BulletType, TankView.fireTransform, TankModel.CurrentLaunchForce);
         
         SFXManager.Instance.Play(SoundTypes.Firing);
-
+        
+        // Reset the launch force.
         TankModel.CurrentLaunchForce = TankModel.MinLaunchForce;
     
         EventHandler.Instance.InvokeBulletFiredEvent();
@@ -155,23 +165,30 @@ public class PlayerTankController
     {
         EventHandler.Instance.OnEnemyDeath += UpdateEnemiesKilledCount; 
         EventHandler.Instance.OnBulletFired += UpdateBulletFiresCount;
+        EventHandler.Instance.OnFireButtonPressed += FireButtonPressed;
+        EventHandler.Instance.OnFireButtonReleased += FireButtonReleased;
     }
 
     private void UnSubscribeEvents()
     {
         EventHandler.Instance.OnEnemyDeath -= UpdateEnemiesKilledCount;
         EventHandler.Instance.OnBulletFired -= UpdateBulletFiresCount;
+        EventHandler.Instance.OnFireButtonPressed -= FireButtonPressed;
+        EventHandler.Instance.OnFireButtonReleased -= FireButtonReleased;
     }
 
     private void UpdateBulletFiresCount()
     {
-        UIManager.Instance.UpdateFireCount(++TankModel.BulletsFired);
-        AchievementHandler.Instance.BulletsFiredAchievement(++TankModel.BulletsFired);
+        int count = ++TankModel.BulletsFired;
+        UIManager.Instance.UpdateFireCount(count);
+        AchievementHandler.Instance.BulletsFiredAchievement(count);
+        
     }
     
     private void UpdateEnemiesKilledCount()
     {
-        UIManager.Instance.UpdateKills(++TankModel.EnemiesKilled);
-        AchievementHandler.Instance.EnemyKilledAchievement(++TankModel.EnemiesKilled);
+        int count = ++TankModel.EnemiesKilled;
+        UIManager.Instance.UpdateKills(count);
+        AchievementHandler.Instance.EnemyKilledAchievement(count);
     }
 }

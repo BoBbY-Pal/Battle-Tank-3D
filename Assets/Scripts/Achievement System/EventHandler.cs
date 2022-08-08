@@ -4,8 +4,9 @@ public class EventHandler : MonoGenericSingleton<EventHandler>
 {
     public event Action OnBulletFired;
     public event Action OnEnemyDeath;
-    public event Action BulletCollided;
-    
+    public event Action OnBulletCollision;
+    public event Action OnFireButtonPressed;
+    public event Action OnFireButtonReleased;
 
     public void InvokeBulletFiredEvent()
     {
@@ -19,8 +20,17 @@ public class EventHandler : MonoGenericSingleton<EventHandler>
 
     public void InvokeBulletCollidedEvent()
     {
-        BulletCollided?.Invoke();
+        OnBulletCollision?.Invoke();
     }
     
-
+    public void InvokeFireButtonReleasedEvent()
+    {
+        OnFireButtonReleased?.Invoke();
+    }
+    
+    public void InvokeFireButtonPressedEvent()
+    {
+        OnFireButtonPressed?.Invoke();
+    }
+    
 }

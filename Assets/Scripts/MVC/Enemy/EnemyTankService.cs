@@ -14,11 +14,15 @@ public class EnemyTankService : MonoGenericSingleton<EnemyTankService>
     private void Start()
     {
         int lengthOfEnum = Enum.GetValues(typeof(EnemyType)).Length;
-        enemyTankType = (EnemyType) Random.Range(0, lengthOfEnum);
-        tankController = CreateEnemyTank();
+
+        for (int i = 0; i < 5; i++)
+        {
+            enemyTankType = (EnemyType) Random.Range(0, lengthOfEnum);
+            tankController = CreateEnemyTank(enemyTankType);
+        }
     }
     
-    private EnemyTankController CreateEnemyTank()
+    private EnemyTankController CreateEnemyTank(EnemyType enemyTankType)
     {
         foreach (EnemySO enemyTank in enemyTankList.enemies)
         {

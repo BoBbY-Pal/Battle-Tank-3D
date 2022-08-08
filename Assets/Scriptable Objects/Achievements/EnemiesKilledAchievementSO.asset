@@ -17,3 +17,11 @@ MonoBehaviour:
     info: Congrats you got your first!
     selectAchievement: 1
     requirement: 1
+  - name: Muderous Tendencies
+    info: Congrats you killed 3 enemies!
+    selectAchievement: 2
+    requirement: 3
+  - name: Evil
+    info: Congrats you killed 5 enemies!
+    selectAchievement: 3
+    requirement: 5

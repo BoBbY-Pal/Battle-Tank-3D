@@ -23,7 +23,7 @@ public class PlayerTankModel
     public Color ZeroHealthColor {get;}
     
     public bool IsDead { get; set; }
-    public bool IsFired { get; set; }
+    public bool b_IsFired { get; set; }
     public int BulletsFired { get; set; }
     public int EnemiesKilled { get; set; }
 
@@ -31,7 +31,7 @@ public class PlayerTankModel
                             float maxLaunchForce, float minLaunchForce, float maxChargeTime, BulletType bulletType)
     {
         IsDead = false;
-        IsFired = false;
+        b_IsFired = false;
         MaxHealth = currentHealth;
         CurrentHealth = currentHealth;
         RotationRate = rotationRate;

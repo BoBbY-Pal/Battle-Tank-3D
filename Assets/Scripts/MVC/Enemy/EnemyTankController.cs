@@ -8,7 +8,8 @@ public class EnemyTankController
     public EnemyTankController(EnemyTankModel tankModel, EnemyTankView tankPrefab)
     {
         this.tankModel = tankModel;
-        tankView = Object.Instantiate(tankPrefab, new Vector3(3,0,-3), new Quaternion(0,0,0,0));
+        Transform transform = SpawnPoints.Instance.GetRandomSpawnPoint();
+        tankView = Object.Instantiate(tankPrefab, transform.position, transform.rotation);
         tankView.SetController(this);
     }
     

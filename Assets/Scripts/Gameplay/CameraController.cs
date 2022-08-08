@@ -41,13 +41,7 @@ public class CameraController : MonoGenericSingleton<CameraController>
     {
         Vector3 averagePos = new Vector3();
         int numOfTargets = 0;
-
-        if (targets.Count == 0)
-        {
-            SetCameraWithEndTargets();
-            return;
-            
-        }
+        
         for (int i = 0; i < targets.Count; i++)
         {
             if(!targets[i].gameObject.activeSelf) 

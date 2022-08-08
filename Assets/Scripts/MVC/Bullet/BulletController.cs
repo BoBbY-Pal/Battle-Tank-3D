@@ -22,14 +22,14 @@ public class BulletController
 
     private void SubscribeEvents()
     {
-        EventHandler.Instance.BulletCollided += ApplyDamageToDamageable;
-        EventHandler.Instance.BulletCollided += Explode;
+        EventHandler.Instance.OnBulletCollision += ApplyDamageToDamageable;
+        EventHandler.Instance.OnBulletCollision += Explode;
     }
 
     private void UnSubscribeEvents()
     {
-        EventHandler.Instance.BulletCollided -= ApplyDamageToDamageable;
-        EventHandler.Instance.BulletCollided -= Explode;
+        EventHandler.Instance.OnBulletCollision -= ApplyDamageToDamageable;
+        EventHandler.Instance.OnBulletCollision -= Explode;
         
     }
 
